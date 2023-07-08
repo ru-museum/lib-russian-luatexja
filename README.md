@@ -1,2 +1,2 @@
-# typesetting-rus-luatexja
-How-To Typesetting Russian for LuaTeX-ja
+# lib-russian-luatexja
+Libraly for Typesetting Russian on LuaTeX-ja. 
