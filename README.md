@@ -14,7 +14,26 @@ Libraly for Typesetting Russian on **LuaTeX-ja**.
 ここでは和文と露文との混在文をコマンド指定を用いることなく実現しています（呱々のフォント指定は除く）。
 ハイフネーション（実例参照）なども問題なく処理が行われます。
 
+# 環境構築
+- ここでは GNU/Linux Debian(sid) での使用例です。
+- texlive-base v. ２０２２.２０２３０１２２-３(sid)
+- texlive-luatex
+- texlive-lang-cyrillic（必要がある場合）
+- Babel 及び Polyglossia は使用しません。
+
+
 # 使用方法
 
-1. ライブラリイの読込
-2. lib-russian-luatexja
+## 1. ライブラリイの読込
+```
+\usepackage{lib-russian-luatexja}
+```
+- 使用するパッケージ **luatexja-fontspec** は同時に読み込まれています。
+
+## 2. lib-russian-luatexja
+
+
+
+
+### ロシア語資料の作成の詳細は以下に詳しく解説しています。
+[LuaLATEX におけるロシア語資料の作成](https://github.com/ru-museum/isbn-barcode-ja-latex/blob/main/latex-with-debian.pdf)lualatex-russian-typesetting.pdf
