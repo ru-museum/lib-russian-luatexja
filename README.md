@@ -13,10 +13,10 @@ Libraly for Typesetting Russian on **LuaTeX-ja**.
 ハイフネーション（実例参照）なども問題なく処理が行われます。
 
 # 環境構築
-- ここでは GNU/Linux Debian(sid) での使用例です。
-- texlive-base v. ２０２２.２０２３０１２２-３(sid)
+ここでは GNU/Linux Debian(sid) での使用例です。
+- texlive-base v. ２０２２.２０２３０１２２-３
 - texlive-luatex
-- texlive-lang-cyrillic（必要がある場合）
+- texlive-lang-cyrillic（必要がある場合）babel-russian
 - Babel 及び Polyglossia は使用しません。
 
 # 使用方法
