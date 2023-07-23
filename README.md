@@ -1,15 +1,15 @@
 # lib-russian-luatexja
-Libraly for Typesetting Russian on **LuaTeX-ja**. 
+Library for Russian Typesetting on **LuaTeX-ja**. 
 
 # 概要
-これは、日本語文書組版パッケージ LuaTeX-ja での環境 ( **ltj**- ) における**ロシア語プロポーショナル表記用ライブラリイ**です。  
-従来 LATEX 環境 での多言語表示には Babel が使用されて来ましたが、LuaLATEX では廃され fontspec 或いは luatexja-preset(最
-近には polyglossia) が使われています。しかし、和文と露文との混在文をスムースに実現するものではありませんでした。  
+これは、日本語文書組版パッケージ **LuaTeX-ja** での環境 ( **ltjsarticle** 等) における**ロシア語プロポーショナル表記用ライブラリイ**です。  
+
+従来 LATEX 環境 での多言語表示には Babel が使用されて来ましたが、LuaLATEX では廃され fontspec 或いは luatexja-preset(最近には polyglossia) が使われています。しかし、**和露混在文**をスムースに実現するものではありませんでした。  
 
 基本を和文フォントとする **LuaTeX-ja** 環境では、ロシア文字は和文フォントに割り振られている為に「等幅」表示されることから、  
 プロポーショナル表記をする為には設定が必要であり、単語のハイフネーションや禁則処理に乱れを生じてしまいます。  
 
-ここでは和文と露文との混在文をコマンド指定を用いることなく実現しています（呱々のフォント指定は除く）。
+ここでは和文と露文との混在文をコマンド指定を用いることなく実現しています（個々のフォント指定は除く）。
 ハイフネーション（実例参照）なども問題なく処理が行われます。
 
 # 環境構築
@@ -17,12 +17,13 @@ Libraly for Typesetting Russian on **LuaTeX-ja**.
 - texlive-base v. ２０２２.２０２３０１２２-３
 - texlive-luatex
 - texlive-lang-cyrillic（必要がある場合）babel-russian
-- Babel 及び Polyglossia は使用しません。
+- Babel 及び Polyglossia は使用していませんが、各々の  template を用意してあります。
 
 # 使用方法
 
 ## 1. ライブラリイの読込
 ```
+\documentclass[a5,10pt]{ltjsarticle}
 \usepackage{lib-russian-luatexja}
 ```
 - 使用するパッケージ **luatexja-fontspec** は同時に読み込まれています。
