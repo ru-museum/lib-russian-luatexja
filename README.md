@@ -6,11 +6,12 @@ Library for Russian Typesetting with **LuaTeX-ja**.
 
 従来 LATEX 環境 での多言語表示には Babel が使用されて来ましたが、LuaLaTeX では廃され fontspec 或いは luatexja-preset(最近には polyglossia) が使われています。
 
-しかし、基本を和文フォントとする **LuaTeX-ja** 環境では、ロシア文字は和文フォントに割り振られている為に「等幅」表示されプロポーショナル表記にはならず、そして単語のハイフネーションや禁則処理に乱れを生じ**和露混在文**を実現するには難があります。  
+しかし、基本を和文フォントとする **LuaTeX-ja** 環境では、ロシア文字は和文フォントに割り振られている為に「等幅」表示されプロポーショナル表記とはならず、そして単語のハイフネーションや禁則処理に乱れを生じ**和露混在文**を実現するには難があります。  
 
-ここではそうしたプロポーショナル表記及びハイフネーションなども問題なく処理され、**LuaTeX-ja** 環境において和露混在文の編集を自由に行えます。
+ここではそうしたプロポーショナル表記及びハイフネーション処理なども問題なく和露混在文の編集を自由に行うことが出来ます。
 
-- Babel 及び Polyglossia は使用していませんが、Babel( article ) 及び polyglossia( ltjsarticle ) の template を同梱しています。
+- Babel 及び Polyglossia は使用していません。  
+但し別の実際例として、Babel( article ) 及び polyglossia( ltjsarticle ) を用いた template を同梱しています。
 - 同じ条件である**ギリシャ語**用のライブラリイ **lib-greek-luatexja** も同梱しています（参照：**template-greek-luatexja** ）。
 
 
