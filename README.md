@@ -4,9 +4,9 @@ Library for Russian Typesetting with **LuaTeX-ja**.
 # 概要
 これは、日本語文書組版パッケージ **LuaTeX-ja** での環境 ( **ltjsclasses** ) における**ロシア語プロポーショナル表記用ライブラリイ**です。  
 
-従来 LATEX 環境 での多言語表示には Babel が使用されて来ましたが、LuaLaTeX では廃され fontspec 或いは luatexja-preset(最近には polyglossia) が使われています。
+従来 LaTeX 環境 での多言語表示には Babel が使用されて来ましたが、LuaLaTeX では廃され fontspec 或いは luatexja-preset(最近には polyglossia) が使われています。
 
-しかし、基本を和文フォントとする **LuaTeX-ja** 環境では、ロシア文字は和文フォントに割り振られている為に「等幅」表示されプロポーショナル表記とはならず、そして単語のハイフネーションや禁則処理に乱れを生じ**和露混在文**を実現するには難があります。  
+しかし、基本を和文フォントとする LuaTeX-ja 環境では、ロシア文字は和文フォントに割り振られている為に和文字扱いとされプロポーショナル表記とはならず**等幅表示**となってしまいます。又、単語のハイフネーションや禁則処理にも乱れを生じ**和露混在文**を実現するには若干難があります。  
 
 ここではそうしたプロポーショナル表記及びハイフネーション処理なども問題なく和露混在文の編集を自由に行うことが出来ます。
 
@@ -27,7 +27,7 @@ Library for Russian Typesetting with **LuaTeX-ja**.
 ```
 \documentclass[a4paper,10pt]{ltjsarticle}
 % \usepackage{luatexja-fontspec} % ここで読込も可
-\usepackage{lib-russian-luatexja}
+\usepackage{../lib/lib-russian-luatexja}
 ```
 - 使用するパッケージ **luatexja-fontspec** は同時に読み込まれています。
 
@@ -37,4 +37,4 @@ Library for Russian Typesetting with **LuaTeX-ja**.
 
 
 ### ロシア語資料の作成の詳細は以下に詳しく解説しています。
-[LuaLATEX におけるロシア語資料の作成](https://github.com/ru-museum/isbn-barcode-ja-latex/blob/main/latex-with-debian.pdf)lualatex-russian-typesetting.pdf
+[LuaLaTeX におけるロシア語資料の作成](https://github.com/ru-museum/isbn-barcode-ja-latex/blob/main/latex-with-debian.pdf)lualatex-russian-typesetting.pdf
