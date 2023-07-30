@@ -32,7 +32,7 @@ Library for Russian Typesetting with **LuaTeX-ja**.
 ```
 ## 2. ロシア語資料の作成
 #### 詳細は以下に詳しく解説しています。
-[Template of Russian Typesetting on LuaTeX-ja: ロシア語資料の作成](https://github.com/ru-museum/lib-russian-luatexja/blob/main/template-russian-luatexja.pdf)（template-russian-luatexja.pdf）
+[The Russian Typesetting on LuaTeX-ja: ロシア語資料の作成](https://github.com/ru-museum/lib-russian-luatexja/blob/main/russian-typesetting-luatexja.pdf)（russian-typesetting-luatexja.pdf）
 
 # TODO
 1. ギリシア語への対応：ギリシア文字は、ロシア文字と同じく和文フォントに割り振られている為に同様の扱いが可能です。
