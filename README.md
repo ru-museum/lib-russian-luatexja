@@ -9,11 +9,11 @@ Library for Russian Typesetting with **LuaTeX-ja**.
 しかし、基本を和文フォントとする LuaTeX-ja 環境では、ロシア文字は和文フォントに割り振られている為に和文字扱いとされプロポーショナル表記とはならず**等幅表示**となってしまいます。又、単語のハイフネーションや禁則処理にも乱れを生じ**和露混在文**を実現するには若干難があります。  
 
 ここではそうしたプロポーショナル表記及びハイフネーション処理なども問題なく和露混在文の編集を自由に行うことが出来ます。
-
+<!--
 - Babel 及び Polyglossia は使用していません。  
 但し別の実際例として、Babel( article ) 及び polyglossia( ltjsarticle ) を用いた template を同梱しています。
 - 同じ条件である**ギリシャ語**用のライブラリイ **lib-greek-luatexja** も同梱しています（参照：**template-greek-luatexja** ）。
-
+-->
 
 # 環境構築
 ここでは GNU/Linux Debian(sid) での使用例です。
