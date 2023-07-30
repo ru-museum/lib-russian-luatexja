@@ -26,15 +26,18 @@ Library for Russian Typesetting with **LuaTeX-ja**.
 ## 1. ライブラリイの読込
 ```
 \documentclass[a4paper,10pt]{ltjsarticle}
-% \usepackage{luatexja-fontspec} % ここで読込も可
+\usepackage{luatexja-fontspec} % 必須
 \usepackage{../lib/lib-russian-luatexja}
 ```
-- 使用するパッケージ **luatexja-fontspec** は同時に読み込まれています。
+## 2. ロシア語資料の作成
+#### 詳細は以下に詳しく解説しています。
+[Template of Russian Typesetting on LuaTeX-ja: ロシア語資料の作成](https://github.com/ru-museum/isbn-barcode-ja-latex/blob/main/template-russian-luatexja.pdf)（template-russian-luatexja.pdf）
 
-## 2. lib-russian-luatexja
+# TODO
+1. ギリシア語への対応：ギリシア文字は、ロシア文字と同じく和文フォントに割り振られている為に同様の扱いが可能です。
+2. Babel 及び Polyglossia 版の追加。 
 
 
 
 
-### ロシア語資料の作成の詳細は以下に詳しく解説しています。
-[LuaLaTeX におけるロシア語資料の作成](https://github.com/ru-museum/isbn-barcode-ja-latex/blob/main/latex-with-debian.pdf)lualatex-russian-typesetting.pdf
+
