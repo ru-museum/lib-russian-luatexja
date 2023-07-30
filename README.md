@@ -18,7 +18,7 @@ Library for Russian Typesetting with **LuaTeX-ja**.
 
 # 環境構築
 ここでは GNU/Linux Debian(sid) での使用例です。
-- texlive-base v. ２０２２.２０２３０１２２-３
+- texlive-base v. ２０２２.２０２３０１２２-３（2023）
 - texlive-luatex
 - texlive-lang-cyrillic（babel-russian やフォント類）
 
