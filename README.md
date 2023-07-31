@@ -27,7 +27,7 @@ Library for Russian Typesetting with **LuaTeX-ja**.
 ## 1. ライブラリイの読込
 ```
 \documentclass[a4paper,10pt]{ltjsarticle}
-\usepackage{luatexja-fontspec} % 必須
+\usepackage[deluxe]{luatexja-preset} % 必須
 \usepackage{../lib/lib-russian-luatexja}
 ```
 ## 2. ロシア語資料の作成
