@@ -1,0 +1,416 @@
+\documentclass[a4paper,10pt]{ltjsarticle}
+
+\usepackage{setspace}
+
+\usepackage{comment} 
+\usepackage{substr}
+\setcounter{secnumdepth}{4}
+
+% LINK
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{pdfborder={0 0 0.5}}
+
+% 色の使用
+\usepackage{xcolor}
+% \usepackage[coloring}
+\usepackage{xcolor}
+% 色定義
+\definecolor{mylinkcolor}{RGB}{3, 112, 145}
+\definecolor{clBlue}{RGB}{3, 112, 145}
+\definecolor{linkcol}{RGB}{2, 106, 77}
+\definecolor{rred}{RGB}{128, 0, 0}
+\hypersetup{
+    colorlinks=true,
+    citecolor=blue,
+    linkcolor=linkcol, 
+    urlcolor=mylinkcolor
+}
+% HTML(#800000)色定義
+\def\colH#1{\color[HTML]{#1}}
+
+% FONT-SIZE 定義
+\def\fs#1{\fontsize{#1}{#1}\selectfont }
+% BACKSLASH 定義
+\def\bs{\textbackslash }
+
+% \setlength\parindent{0pt} % 段落はじめの空白を除去
+
+% FONT 
+\usepackage[deluxe]{luatexja-preset}
+\usepackage{./lib/lib-russian-luatexja} 
+
+\def\basefont{NotoSerifCJKjp-Regular} 
+\setmainfont{\basefont} 
+% フォント名
+\def\myMainfont{
+  \BeforeSubString{-Regular}{\basefont}
+}
+
+% 
+% フォントの定義設定
+% 
+\newfontfamily\fTimes{times}
+\newfontfamily\fArial{arial}
+\newfontfamily\fFSerif{FreeSerif}
+\newfontfamily\fRoboto{roboto}
+\newfontfamily\fYumin{yumin}
+\newfontfamily\fIPAM{HaranoAjiMincho-Regular}
+\newfontfamily\fNCMSans{NewCMSans10-Regular}
+\newfontfamily\fCRoman{Crimson-Roman}
+
+% 
+% SECTIONの定義
+% 
+\usepackage{titlesec}
+\titleformat{\section}[block]{\fRoboto \large \textbf}{\thesection}{0.5em}{}% 
+\titleformat{\subsection}[block]{\fRoboto \large \textbf}{\thesubsection}{0.5em}{}% 
+
+\usepackage{listings}
+\usepackage{tablefootnote}
+
+% TITLEPAGE 
+\title{
+  \huge Template of Russian Typesetting\\ on LuaTeX-ja\vspace{16mm} \par
+  \Large{ロシア語資料の作成}\vspace{6mm}\\
+  \small{基本フォント： \myMainfont 版}
+\par\vspace{120mm}
+}
+\author{\href{https://github.com/ru-museum/}{ru\_museum} (GitHub)}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\thispagestyle{empty}
+
+\clearpage
+\addtocounter{page}{-2}
+
+\newpage
+  
+\tableofcontents
+\thispagestyle{empty}
+
+\newpage
+
+\section{概要}
+これは、日本語文書組版パッケージ \textbf{\colH{800000} LuaTeX-ja} での環境 ( \textbf{\colH{800000} ltjsclasses}\footnote{jsclasses を LuaT X‐ja 用に改変したもの。ltjsarticle 他がある。} ) において和露混在文を作成する為のロシア語の記述方法を解説するものです。\vspace{6pt}\\
+基本を和文フォントとする LuaTeX-ja 環境では、ロシア及びギリシア文字は和文フォントに割り振られている為に\textbf{等幅表示}されることからプロポーショナル表記に難があり、単語のハイフネーションや禁則処理に乱れを生じます。\vspace{6pt}\par
+
+そうした問題を解消し、ロシア語の\textbf{プロポーショナル表記}を可能としています。\vspace{6pt}\par
+
+従来LaTeX{}では多言語混在の文書作成にはp\LaTeX{} 由来の class \textbf{"article"}と\textbf{Babel}の組み合わせ、更にはその代替の\textbf{Polyglossia}が用いられて来ています。\vspace{6pt}\par
+
+LuaTeX-ja（ltjsarticle等）環境においてもそれら両者を使用することは出来ますが、基本を和文フォントとする以上問題は解決されません。\vspace{6pt}\par
+
+以下の表示例に示す様に、それらを使用せず和露混在文\footnote{特別にフォントを指定し字体を変える以外にはロシア語への特別なマークアップは必要ありません。}を自由に編集出来ます。\vspace{6pt}\par
+
+\vspace{6pt}
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{l|l}
+\textbf{和露混在文} & \textbf{指定フォント}\\
+\hline
+これは{\color[HTML]{800000}\fIPAM Л. Н. Толстой}テストです。 & IPAex明朝\tablefootnote{「IPAフォント」をベースにした「IPAexフォント」は、「和文の文字を固定幅、欧文の文字をプロポーショナルで表示するTrueTypeフォント」と謳っていますがキリル文字には対応していない様です。}(IPA P明朝)、原ノ味\\
+これは{\color[HTML]{800000}Л. Н. Толстой}テストです。 &  \basefont(default)\\
+これは{\color[HTML]{800000}\fTimes{ Л. Н. Толстой}}テストです。 & Times(PSCyr)\\
+これは{\color[HTML]{800000}\fArial{ Л. Н. Толстой}}テストです。 & Arial(PSCyr)\\
+\end{tabular}
+\caption{表示例}
+\end{center}
+\end{table}
+\vspace{-4mm}
+
+\section{環境構築}
+
+\begin{itemize} 
+  \item ここではGNU/Linux Debian (sid) での使用例です。
+  \item Babel 及び Polyglossia は使用しません。\vspace{-6mm}
+\end{itemize}
+
+% \newpage
+
+\subsection{インストールパッケージ}
+\begin{quote}
+\begin{verbatim}
+texlive-base v. 2022.20230122-3(sid)  
+texlive-luatex
+texlive-lang-japanese（LuaTeX-ja）
+texlive-lang-cyrillic（ロシア語フォント、Polyglossia等）
+\end{verbatim}\vspace{-6mm}
+\end{quote}
+
+\subsection{和文フォント}
+
+\begin{itemize} 
+  \item 現在プロポーショナル\footnote{「等幅」を欧文フォントのプロポーショナル化する処理。}に対応し無料で入手可能で、問題の生じない推奨和文フォントには主に以下のものがあります。　⇒参照:「3.2.1 基本フォントの指定 表3 基本設定に適する主要フォント」  
+  \vspace{-8mm}\\
+\begin{quote}
+\begin{table}[h]
+%{\fs{11}
+\begin{center}
+\begin{tabular}{l|l}
+\textbf{対応和文フォント} & \textbf{フォント名}\\
+\hline\vspace{-4mm}\\
+\href{https://fonts.google.com/noto/specimen/Noto+Serif+JP}{NotoSerifJP} & Noto Serif Japanese(Google Fonts)\\
+ & {\fs{9}//fonts.google.com/noto/specimen/Noto+Serif+JP}\\
+\href{https://github.com/notofonts/noto-cjk}{NotoSerifCJK} &  Noto CJK fonts(GitHub)\\
+ & {\fs{9}//github.com/notofonts/noto-cjk}\\
+\href{https://github.com/adobe-fonts/source-serif/tree/release/OTF}{SourceSerif4} & Source Serif(adobe-fonts/GitHub)\\
+ & {\fs{9}//github.com/adobe-fonts/source-serif/tree/release/OTF}\\
+\href{https://github.com/IBM/plex/tree/master/IBM-Plex-Serif/fonts/complete/otf}{IBMPlexSerif} & IBM Plex typeface(GitHub)\\ 
+ & {\fs{9}//github.com/IBM/plex/tree/master/IBM-Plex-Serif/fonts/complete/otf}\\
+\end{tabular}
+\caption{主要和文フォント}\vspace{-10mm}
+\end{center}
+%}
+\end{table}
+\end{quote}
+\end{itemize} 
+
+\subsection{欧文フォント(PSCyr)}
+
+\begin{itemize} 
+  \item Linux及びTexLiveには所謂Windows系のTimes New RomanやArial系の欧文書体はインストールされていません。ここではTimesやArial系が同梱されたPSCyrパッケージを以下のHPからダウンロードします。\\ 
+  \href{http://tex.imm.uran.ru/texserver/fonts/pscyr/pscyr4c/}{TeX в ИММ}\\
+  {\fs{11}http://tex.imm.uran.ru/texserver/fonts/pscyr/pscyr4c/}\\  
+  \href{http://tex.imm.uran.ru/texserver/fonts/pscyr/PSCyr-0.4c-patch2-type1.tar.gz}{PSCyr-0.4-type1.tar.gz}\\
+  {\fs{11}http://tex.imm.uran.ru/texserver/fonts/pscyr/PSCyr-0.4c-patch2-type1.tar.gz}\\
+\href{https://ctan.org/topic/font-otf}{OTF Font} (CTAN: OpenType/TrueTypeの欧文フォントがダウンロード可能)\\
+https://ctan.org/topic/font-otf
+\end{itemize}
+\vspace{-2mm}
+
+\subsection{フォントのインストール}
+\begin{itemize}
+  \item インストールするフォルダの位置は環境により異なります。\vspace{-6mm}
+\end{itemize}
+
+\subsubsection{PSCyrパッケージのインストール}
+
+\vspace{2mm}
+
+\begin{enumerate}
+  \item 解凍したPSCyrパッケージのフォルダ構成は以下の様になっています。
+{\fs{10pt}
+\begin{verbatim}
+ ├fonts
+    ├afm
+    └type1
+       └public
+         └pscyr
+           ├acade1.pfb
+           ├・・・・・
+           └timesi.pfb
+\end{verbatim}
+}
+
+  \item /type1/public/内のフォルダpscyr以下をコピーし、\\
+  /usr/share/texlive/texmf-dist/fonts/type1/public内に貼り付けます。\\
+/usr/share/texlive/texmf-dist/fonts/type1/public/{\colH{800000} pscyr/*.pfb}
+\end{enumerate}
+\vspace{-8mm}
+\subsubsection{和文フォントのインストール}
+
+\begin{enumerate}
+  \item OTFのフォントは/opentype或いは/opentype/publicフォルダへ追加します。\\
+【インストール例】\\
+/usr/share/texlive/texmf-dist/fonts/opentype/adobe/sourcehanserif/*.otf\\
+/usr/share/texlive/texmf-dist/fonts/opentype/google/noto/*.otf  
+  \item OS付属の/usr/share/fontsにある各種フォントも基本的に使用可能です。\vspace{-6mm}
+\end{enumerate}
+
+\section{作成手順}
+
+\subsection{ライブラリーの読込}
+{\colH{800000} lib-russian-luatexja.sty} パッケージを読込みます。
+\vspace{-2mm}
+\begin{verbatim}
+  \usepackage[deluxe]{luatexja-preset} % 必須
+  \usepackage{./lib/lib-russian-luatexja} 
+\end{verbatim}
+\vspace{-6mm}
+    
+\subsection{フォントの設定と定義}
+
+\subsubsection{基本フォントの指定}
+\begin{itemize}
+  \item[]\hspace{-5mm} {\colH{800000}\bs setmainfont\{} \basefont{\colH{800000} \}}
+  \item 基本指定した書体の和文フォントは全体に適用されます。
+  \item 特に指定がなければTexLiveのデフォルトのHarano Aji Fonts（haranoaji）が設定されます。
+  \item 現在適正に表記の出来る\textbf{主な基本設定向けフォント}は以下のものがあります。\\
+  インストール方法は 「\fRoboto{2.4} {\textbf フォントのインストール}」を参照して下さい。\vspace{-4mm}
+\end{itemize}
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{l|c|l}
+\textbf{フォント名} & \textbf{提供元} & \textbf{用途}\\
+\hline
+NotoSerifCJKjp-Regular & Google & 和文\\%
+NotoSerifJP-Regular & Google & 和文\\%
+SourceSerif4-Regular & Adobe & 和文\\%
+SourceSerifJP-Regular & Adobe & 和文\\%
+SourceHanSerif-Regular & Adobe & 和文\\%
+SourceHanSans-Regular & Adobe & 和文\\%
+IBMPlexSerif-Regular & IBM & 和文\\%
+RobotoSlab-Regular & Google & 欧文\\%
+roboto & Google & 欧文\\%
+times, arial etc. & PSCyr & 欧文\\%
+RobotoSlab-Regular & Google & 欧文\\%
+NewCMSans10-Regular & TexLive & 欧文\\%
+CMU Serif, CMU Sans & TexLive & 欧文\\%
+FreeSerif, FreeSans & TexLive & 欧文\\%
+\end{tabular}
+\caption{基本設定に適する主要フォント}\vspace{-8mm}
+\end{center}
+\end{table}
+
+% \newpage
+
+\subsubsection{個別フォントの定義}
+\begin{itemize}
+  \item[] {\colH{800000} \textbackslash newfontfamily\textbackslash<command>\{<fontname>\}}
+\vspace{-2mm}
+\begin{verbatim}
+定義例：\newfontfamily\fArial{arial}
+       \newfontfamily\fRoboto{roboto} % Google OTF
+\end{verbatim} 
+\vspace{-2mm}
+  \item <command>名は自由に宣言出来ます。  
+  \item インストールされているフォントを確認し試行を行って下さい。\\
+OS（Debian）: /usr/share/fonts/\\
+TexLive: /usr/share/texlive/texmf-dist/fonts/\vspace{-4mm}
+\end{itemize}
+
+\subsubsection{混在文におけるフォント指定}
+\begin{itemize}
+  \item 定義したフォントを指定したい文字列へ適用します。
+  \item[] {\colH{800000} \textbackslash <command>\{<text>\}}
+  \item[] ロシアの作家{\colH{800000}\textbackslash fTimes\{}Толстой{\colH{800000}\}}と{\colH{800000}\textbackslash fArial\{}Достоевский{\colH{800000}\}}は思想家でもある。\\
+    \textbf{表示結果}：ロシアの作家\fTimes{Толстой}と\fArial{Достоевский}は思想家でもある。
+% \vspace{6mm}
+\end{itemize}
+
+\section{指定フォントによる表示例}
+\subsection{基本フォント: \textcolor{rred}{NotoSerifCJKjp-Regular}（地文）}
+
+\begin{itemize} 
+  \item[]
+\textbf{和文}\\
+\hspace{3mm} 日本国民は正当に選挙された国会における代表者を通じて行動し、われらとわれらの子孫のために、諸国民と協和による成果と、わが国全土にわたって自由のもたらす恵沢を確保し、政府の行為によって再び戦争の惨禍が起こることのないようにすることを決意し、ここに主権が国民に存することを宣言し、この憲法を確定する。そもそも国政は国民の厳粛な信託によるものであって、その権威は国民に由来し、その権力は国民の代表者がこれを行使し、その福利は国民がこれを享受する。これは人類普遍の原理であり、この憲法は、かかる原理に基づくものである。われらはこれに反する一切の憲法、法令及び詔勅を排除する。\par
+
+\hspace{3mm} 日本国民は、恒久の平和を念願し、人間相互の関係を支配する崇高な理想を深く自覚するのであって、平和を愛する諸国民の公正と信義を信頼して、われらの安全と生存を保持しようと決意した。われらは平和を維持し、専制と隷従、圧迫と偏狭を地上から永遠に除去しようと努めている国際社会において、名誉ある地位を占めたいと思う。われらは全世界の国民が、ひとしく恐怖と欠乏から免れ、平和の内に生存する権利を有することを確認する。\par
+
+\hspace{3mm} われらは、いずれの国家も、自国のことのみに専念して他国を無視してはならないのであって、政治道徳の法則は、普遍的なものであり、この法則に従うことは、自国の主権を維持し、他国と対等関係に立とうとする各国の責務であると信ずる。\par
+
+日本国民は、国家の名誉にかけて、全力をあげて崇高な理想と目的を達成することを誓う。\footnote{「日本国憲法」 前文}\vspace{2mm}
+ \par 
+
+% \newpage
+
+\textbf{英文}\\
+\hspace{3mm} Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\vspace{2mm}
+\par
+  \item[]
+\textbf{露文}\\
+\hspace{3mm}Все счастливые семьи похожи друг на друга, каждая несчастливая семья несчастлива по-своему.\par
+\hspace{3mm}Всё смешалось в доме Облонских. Жена узнала, что муж был в связи с бывшею в их доме Француженкою-гувернанткой, и объявила мужу, что не может жить с ним в одном доме. Положение это продолжалось уже третий день и мучительно чувствовалось и самими супругами, и всеми членами семьи, и домочадцами. Все члены семьи и домочадцы чувствовали, что нет смысла в их сожительстве и что на каждом постоялом дворе случайно сошедшиеся люди более связаны между собой, чем они, члены семьи и домочадцы Облонских. Жена не выходила из своих комнат, мужа третий день не было дома. Дети бегали по всему дому, как потерянные; Англичанка поссорилась с экономкой и написала записку приятельнице, прося приискать ей новое место; повар ушел еще вчера со двора, во время обеда; черная кухарка и кучер просили расчета.\par
+\hspace{3mm} На третий день после ссоры князь Степан Аркадьич Облонский — Стива, как его звали в свете, — в обычайный час, то есть в 8 часов утра, проснулся не в спальне жены, а в своем кабинете, на сафьянном диване. Он повернул свое полное, выхоленное тело на пружинах дивана, как бы желая опять заснуть надолго, с другой стороны крепко обнял подушку и прижался к ней щекой; но вдруг вскочил, сел на диван и открыл глаза.\par 
+\hspace{80mm}— Анна Каренина: Л. Н. Толстой\footnote{Анна Каренина: Л. Н. Толстой, Полное собрание сочинений. Том 18, Часть Первая. I. с.3\\
+https://tolstoy.ru/upload/iblock/a58/18\_tom.pdf // Льв Толстой(Tolstoy.ru)}
+\end{itemize}
+
+\subsection{指定フォント: \textcolor{rred}{Times}}
+\fTimes{
+\setlength{\leftskip}{10mm}
+Все счастливые семьи похожи друг на друга, каждая несчастливая семья несчастлива по-своему.\par
+Всё смешалось в доме Облонских. Жена узнала, что муж был в связи с бывшею в их доме Француженкою-гувернанткой, и объявила мужу, что не может жить с ним в одном доме. Положение это продолжалось уже третий день и мучительно чувствовалось и самими супругами, и всеми членами семьи, и домочадцами. Все члены семьи и домочадцы чувствовали, что нет смысла в их сожительстве и что на каждом постоялом дворе случайно сошедшиеся люди более связаны между собой, чем они, члены семьи и домочадцы Облонских. Жена не выходила из своих комнат, мужа третий день не было дома. Дети бегали по всему дому, как потерянные; Англичанка поссорилась с экономкой и написала записку приятельнице, прося приискать ей новое место; повар ушел еще вчера со двора, во время обеда; черная кухарка и кучер просили расчета.\par
+На третий день после ссоры князь Степан Аркадьич Облонский — Стива, как его звали в свете, — в обычайный час, то есть в 8 часов утра, проснулся не в спальне жены, а в своем кабинете, на сафьянном диване. Он повернул свое полное, выхоленное тело на пружинах дивана, как бы желая опять заснуть надолго, с другой стороны крепко обнял подушку и прижался к ней щекой; но вдруг вскочил, сел на диван и открыл глаза.\par 
+\hspace{80mm}— Анна Каренина: Л. Н. Толстой}
+
+\subsection{指定フォント: \textcolor{rred}{Arial}}
+\fArial{
+\setlength{\leftskip}{10mm}
+Все счастливые семьи похожи друг на друга, каждая несчастливая семья несчастлива по-своему.\par
+Всё смешалось в доме Облонских. Жена узнала, что муж был в связи с бывшею в их доме Француженкою-гувернанткой, и объявила мужу, что не может жить с ним в одном доме. Положение это продолжалось уже третий день и мучительно чувствовалось и самими супругами, и всеми членами семьи, и домочадцами. Все члены семьи и домочадцы чувствовали, что нет смысла в их сожительстве и что на каждом постоялом дворе случайно сошедшиеся люди более связаны между собой, чем они, члены семьи и домочадцы Облонских. Жена не выходила из своих комнат, мужа третий день не было дома. Дети бегали по всему дому, как потерянные; Англичанка поссорилась с экономкой и написала записку приятельнице, прося приискать ей новое место; повар ушел еще вчера со двора, во время обеда; черная кухарка и кучер просили расчета.\par
+На третий день после ссоры князь Степан Аркадьич Облонский — Стива, как его звали в свете, — в обычайный час, то есть в 8 часов утра, проснулся не в спальне жены, а в своем кабинете, на сафьянном диване. Он повернул свое полное, выхоленное тело на пружинах дивана, как бы желая опять заснуть надолго, с другой стороны крепко обнял подушку и прижался к ней щекой; но вдруг вскочил, сел на диван и открыл глаза.\par 
+\hspace{80mm}— Анна Каренина: Л. Н. Толстой}\vspace{-2mm}
+
+\subsection{指定フォント: \textcolor{rred}{roboto}}
+\fRoboto{
+\setlength{\leftskip}{10mm}
+Все счастливые семьи похожи друг на друга, каждая несчастливая семья несчастлива по-своему.\par
+Всё смешалось в доме Облонских. Жена узнала, что муж был в связи с бывшею в их доме Француженкою-гувернанткой, и объявила мужу, что не может жить с ним в одном доме. Положение это продолжалось уже третий день и мучительно чувствовалось и самими супругами, и всеми членами семьи, и домочадцами. Все члены семьи и домочадцы чувствовали, что нет смысла в их сожительстве и что на каждом постоялом дворе случайно сошедшиеся люди более связаны между собой, чем они, члены семьи и домочадцы Облонских. Жена не выходила из своих комнат, мужа третий день не было дома. Дети бегали по всему дому, как потерянные; Англичанка поссорилась с экономкой и написала записку приятельнице, прося приискать ей новое место; повар ушел еще вчера со двора, во время обеда; черная кухарка и кучер просили расчета.\par
+На третий день после ссоры князь Степан Аркадьич Облонский — Стива, как его звали в свете, — в обычайный час, то есть в 8 часов утра, проснулся не в спальне жены, а в своем кабинете, на сафьянном диване. Он повернул свое полное, выхоленное тело на пружинах дивана, как бы желая опять заснуть надолго, с другой стороны крепко обнял подушку и прижался к ней щекой; но вдруг вскочил, сел на диван и открыл глаза.\par 
+\hspace{80mm}— Анна Каренина: Л. Н. Толстой
+}
+
+\subsection{指定フォント: \textcolor{rred}{FreeSerif}}
+\fFSerif{
+\setlength{\leftskip}{10mm}
+Все счастливые семьи похожи друг на друга, каждая несчастливая семья несчастлива по-своему.\par
+Всё смешалось в доме Облонских. Жена узнала, что муж был в связи с бывшею в их доме Француженкою-гувернанткой, и объявила мужу, что не может жить с ним в одном доме. Положение это продолжалось уже третий день и мучительно чувствовалось и самими супругами, и всеми членами семьи, и домочадцами. Все члены семьи и домочадцы чувствовали, что нет смысла в их сожительстве и что на каждом постоялом дворе случайно сошедшиеся люди более связаны между собой, чем они, члены семьи и домочадцы Облонских. Жена не выходила из своих комнат, мужа третий день не было дома. Дети бегали по всему дому, как потерянные; Англичанка поссорилась с экономкой и написала записку приятельнице, прося приискать ей новое место; повар ушел еще вчера со двора, во время обеда; черная кухарка и кучер просили расчета.\par
+На третий день после ссоры князь Степан Аркадьич Облонский — Стива, как его звали в свете, — в обычайный час, то есть в 8 часов утра, проснулся не в спальне жены, а в своем кабинете, на сафьянном диване. Он повернул свое полное, выхоленное тело на пружинах дивана, как бы желая опять заснуть надолго, с другой стороны крепко обнял подушку и прижался к ней щекой; но вдруг вскочил, сел на диван и открыл глаза.\par 
+\hspace{80mm}— Анна Каренина: Л. Н. Толстой
+}
+
+\section{TIPS}
+
+\subsection{SECTIONの文字化け}
+\begin{itemize}
+  \item SECTION内では、システム側で設定されている\textbf{lmsans10-regular}フォントがキリル文字を含まない為に、直接ロシア語を使うと文字化けします。
+  \item 何れの解決法も\textbf{LaTeX Font Warning}の警告が表示されますが問題はありません。  \vspace{2mm}
+\begin{spacing}{0.8}
+\textbf{警告例：}
+\begin{itemize}
+  \item[(a)] Package hyperref Warning: Token not allowed in a PDF string (Unicode):\\
+(hyperref) removing `\bs fSection' on input line 179.
+  \item[(b)] LaTeX Font Warning: Font shape `TU/Crimson-Roman(0)/b/n' undefined\\
+(Font)              using `TU/Crimson-Roman(0)/m/n' instead on input line 169.
+  \item[(c)] Missing character: There is no Л (U+041B) in font [lmsans10-bold]:+tlig;!
+\end{itemize}
+\end{spacing}\vspace{2mm}
+  \item[]\textbf{解決法１：フォントの適用}\\
+  独自に定義したロシア語対応の欧文フォントを適用します（目次にも反映します）。\\
+{\textbf 記述例：　}\bs section\{サンプル：トルストイ{\colH{800000}\bs fArial\{} Л. Н. Толстой{\colH{800000}\}}\}\hspace{3mm}\\
+※ \textbf{SECTION ６} のサンプルを参照。\vspace{2mm}
+
+  \item[]\textbf{解決法２：フォントの差し替え}\\
+原因であるフォント\textbf{lmsans10-regular.otf, lmsans12-regular.otf}をキリル文字が含む他の欧文フォントに差し替えます（代替フォントは自由に選択可）。\\
+この場合は、フォントを指定することなく直接ロシア語の記述が可能となります。
+  \item[]\textbf{フォントの差し替え手順}\\
+  ※ これは、\bs section及び\bs tableofcontentsでの再定義等でも是正されなかった結果の解決策です。\\
+/usr/share/texmf/fonts/opentype/public/lm/{\colH{800000}lmsans10-regular.otf}, {\colH{800000}lmsans12-regular.otf}\\
+/usr/share/texlive/texmf-dist/fonts/opentype/kosch/crimson/{\colH{800000}Crimson-Roman.otf} \% 差し替えるフォント\\
+（１）ファイル名の変更しバックアップする：\\
+　　lmsans10-regular.otf, lmsans12-regular.otf => lmsans10-regular{\colH{800000}.org}.otf, lmsans12-regular{\colH{800000}.org}.otf\\
+（２）ファイルの差し替え：\\
+　　{\colH{800000}Crimson-Roman.otf}を\textbf{/lm}へ貼付け、lmsans10-regular.otfとlmsans12-regular.otfに変更する。
+\end{itemize}
+
+\subsection{SECTIONの再定義}
+\begin{itemize}
+  \item Lua\TeX{}-jaでは日本語環境である為、{\colH{800000}section}と{\colH{800000}subsection}は「\textbf{第◯節}」等と表示される場合があります。\\
+  これを数字のみの表記「\textbf{\fRoboto 2.1}」の形式にしたい場合はSECTIONの再定義を行います。
+%{\fs{10}
+\begin{verbatim}
+\newfontfamily\fCRoman{Crimson-Roman} % フォントの定義
+\usepackage\{titlesec\}
+\titleformat{\section}[block]{\fCRoman \large \textbf}{\thesection}{0.5em}{}% 
+\titleformat{\subsection}[block]{\fCRoman \large \textbf}{\thesubsection}{0.5em}{}
+\end{verbatim}
+%}
+\end{itemize}
+
+\subsection{数字の太字}
+
+\begin{itemize}
+   \item 数字の太字化（\bs textbf, \bs gtfamily等）の効果が余り明瞭でない時は、ゴシックフォント（roboto等）を適用して下さい。\\
+   例：詳細は「{\colH{800000}\bs fRoboto\{}2.4{\colH{800000}\}}\bs textbf\{フォントのインストール\}」を参照。\\
+    \textbf{表示結果}：詳細は「\fRoboto{2.4}\textbf{フォントのインストール}」を参照。
+\end{itemize}
+\section{サンプル：トルストイ  {\fCRoman Л. Н. Толстой}}
+  
+\end{document}
