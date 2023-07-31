@@ -63,8 +63,8 @@
 % SECTIONの定義
 % 
 \usepackage{titlesec}
-\titleformat{\section}[block]{\fRoboto \large \textbf}{\thesection}{0.5em}{}% 
-\titleformat{\subsection}[block]{\fRoboto \large \textbf}{\thesubsection}{0.5em}{}% 
+\titleformat{\section}[block]{\gtfamily \large}{\thesection}{0.5em}{}% 
+\titleformat{\subsection}[block]{\gtfamily \large}{\thesubsection}{0.5em}{}% 
 
 \usepackage{listings}
 \usepackage{tablefootnote}
@@ -105,7 +105,7 @@
 
 LuaTeX-ja（ltjsarticle等）環境においてもそれら両者を使用することは出来ますが、基本を和文フォントとする以上問題は解決されません。\vspace{6pt}\par
 
-以下の表示例に示す様に、それらを使用せず和露混在文\footnote{特別にフォントを指定し字体を変える以外にはロシア語への特別なマークアップは必要ありません。}を自由に編集出来ます。\vspace{6pt}\par
+以下の表示例に示す様に、それらを使用せず和露混在文\footnote{特別にフォントを指定し字体を変える以外にはロシア語への特別なマークアップは必要ありません。}を自由に編集出来ます。\vspace{-2mm}\par
 
 \vspace{6pt}
 \begin{table}[h]
@@ -121,25 +121,24 @@ LuaTeX-ja（ltjsarticle等）環境においてもそれら両者を使用する
 \caption{表示例}
 \end{center}
 \end{table}
-\vspace{-4mm}
+\vspace{-6mm}
 
 \section{環境構築}
 
 \begin{itemize} 
   \item ここではGNU/Linux Debian (sid) での使用例です。
-  \item Babel 及び Polyglossia は使用しません。\vspace{-6mm}
+  \item Babel 及び Polyglossia は使用しません。\vspace{-2mm}
 \end{itemize}
 
-% \newpage
-
 \subsection{インストールパッケージ}
+\vspace{-2mm}
 \begin{quote}
 \begin{verbatim}
 texlive-base v. 2022.20230122-3(sid)  
 texlive-luatex
 texlive-lang-japanese（LuaTeX-ja）
 texlive-lang-cyrillic（ロシア語フォント、Polyglossia等）
-\end{verbatim}\vspace{-6mm}
+\end{verbatim}\vspace{-4mm}
 \end{quote}
 
 \subsection{和文フォント}
@@ -163,7 +162,7 @@ texlive-lang-cyrillic（ロシア語フォント、Polyglossia等）
 \href{https://github.com/IBM/plex/tree/master/IBM-Plex-Serif/fonts/complete/otf}{IBMPlexSerif} & IBM Plex typeface(GitHub)\\ 
  & {\fs{9}//github.com/IBM/plex/tree/master/IBM-Plex-Serif/fonts/complete/otf}\\
 \end{tabular}
-\caption{主要和文フォント}\vspace{-10mm}
+\caption{主要和文フォント}\vspace{-2mm}
 \end{center}
 %}
 \end{table}
@@ -185,7 +184,7 @@ https://ctan.org/topic/font-otf
 
 \subsection{フォントのインストール}
 \begin{itemize}
-  \item インストールするフォルダの位置は環境により異なります。\vspace{-6mm}
+  \item インストールするフォルダの位置は環境により異なります。\vspace{-4mm}
 \end{itemize}
 
 \subsubsection{PSCyrパッケージのインストール}
@@ -219,7 +218,7 @@ https://ctan.org/topic/font-otf
 【インストール例】\\
 /usr/share/texlive/texmf-dist/fonts/opentype/adobe/sourcehanserif/*.otf\\
 /usr/share/texlive/texmf-dist/fonts/opentype/google/noto/*.otf  
-  \item OS付属の/usr/share/fontsにある各種フォントも基本的に使用可能です。\vspace{-6mm}
+  \item OS付属の/usr/share/fontsにある各種フォントも基本的に使用可能です。\vspace{-2mm}
 \end{enumerate}
 
 \section{作成手順}
@@ -263,11 +262,9 @@ NewCMSans10-Regular & TexLive & 欧文\\%
 CMU Serif, CMU Sans & TexLive & 欧文\\%
 FreeSerif, FreeSans & TexLive & 欧文\\%
 \end{tabular}
-\caption{基本設定に適する主要フォント}\vspace{-8mm}
+\caption{基本設定に適する主要フォント}
 \end{center}
 \end{table}
-
-% \newpage
 
 \subsubsection{個別フォントの定義}
 \begin{itemize}
@@ -288,7 +285,7 @@ TexLive: /usr/share/texlive/texmf-dist/fonts/\vspace{-4mm}
 \begin{itemize}
   \item 定義したフォントを指定したい文字列へ適用します。
   \item[] {\colH{800000} \textbackslash <command>\{<text>\}}
-  \item[] ロシアの作家{\colH{800000}\textbackslash fTimes\{}Толстой{\colH{800000}\}}と{\colH{800000}\textbackslash fArial\{}Достоевский{\colH{800000}\}}は思想家でもある。\\
+  \item[] \textbf{記述例}：ロシアの作家 {\colH{800000}\textbackslash fTimes\{}Толстой{\colH{800000}\}} と {\colH{800000}\textbackslash fArial\{}Достоевский{\colH{800000}\}} は思想家でもある。\vspace{2mm}\\
     \textbf{表示結果}：ロシアの作家\fTimes{Толстой}と\fArial{Достоевский}は思想家でもある。
 % \vspace{6mm}
 \end{itemize}
@@ -305,10 +302,10 @@ TexLive: /usr/share/texlive/texmf-dist/fonts/\vspace{-4mm}
 
 \hspace{3mm} われらは、いずれの国家も、自国のことのみに専念して他国を無視してはならないのであって、政治道徳の法則は、普遍的なものであり、この法則に従うことは、自国の主権を維持し、他国と対等関係に立とうとする各国の責務であると信ずる。\par
 
-日本国民は、国家の名誉にかけて、全力をあげて崇高な理想と目的を達成することを誓う。\footnote{「日本国憲法」 前文}\vspace{2mm}
+日本国民は、国家の名誉にかけて、全力をあげて崇高な理想と目的を達成することを誓う。\footnote{「日本国憲法」 前文}
  \par 
 
-% \newpage
+\newpage
 
 \textbf{英文}\\
 \hspace{3mm} Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\vspace{2mm}
