@@ -12,9 +12,7 @@ Library for Russian Typesetting with **LuaTeX-ja**.
 
 - Babel 及び Polyglossia は使用していません。  
 但し別の実際例として、Babel( article ) 及び polyglossia( ltjsarticle ) を用いた template を予定しています。
-<!--
-- 同じ条件である**ギリシャ語**用のライブラリイ **lib-greek-luatexja** も同梱しています（参照：**template-greek-luatexja** ）。
--->
+- 同じ条件である**ギリシャ語**用のライブラリイ **lib-greek-luatexja** も同梱しています（参照：**greek-typesetting--luatexja** ）。
 
 # 環境構築
 ここでは GNU/Linux Debian(sid) での使用例です。
@@ -34,9 +32,12 @@ Library for Russian Typesetting with **LuaTeX-ja**.
 #### 詳細は以下に詳しく解説しています。
 [Template of Russian Typesetting on LuaTeX-ja: ロシア語資料の作成](https://github.com/ru-museum/lib-russian-luatexja/blob/main/russian-typesetting-luatexja.pdf)（russian-typesetting-luatexja.pdf）
 
+## 3. ギリシア語資料の作成
+#### 詳細は以下に詳しく解説しています。
+[Template of Greek Typesetting on LuaTeX-ja: ロシア語資料の作成](https://github.com/ru-museum/lib-russian-luatexja/blob/main/russian-typesetting-luatexja.pdf)（greek-typesetting-luatexja.pdf）
+
 # TODO
-1. **ギリシア語への対応**：ギリシア文字は、ロシア文字と同じく和文フォントに割り振られている為に同様の扱いが可能です。
-2. Babel 及び Polyglossia 版の追加。 
+- Babel 及び Polyglossia 版の追加。 
 
 
 
