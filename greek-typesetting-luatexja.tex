@@ -256,13 +256,12 @@ TexLive: /usr/share/texlive/texmf-dist/fonts/
 \subsubsection{混在文におけるフォント指定}
 \begin{itemize}
   \item[] {\colH{800000} \textbackslash <command>\{<text>\}}
-  \item ギリシャ語は和文フォントへの収録が不完全な為そのままでは一部文字化けする場合がありますので、欧文フォントによる指定が必要です。ギリシャ語は全て指定することをお薦めします。
+    \item ギリシャ語は和文フォントへの収録が不完全\footnote{古代ギリシア語に関連する文字群。}な為そのままでは一部文字化けする場合がありますので、欧文フォントによる指定が必要です。ギリシャ語は全て指定することをお薦めします。
   \item[] 
   \textbf{無指定}：ホメーロス作『イーリアス』Ιλι{\colH{800000}ά}δα と 『オデュッセイア』ΟΔΥΣΣΕΙΑ。\\
   \textbf{指定例}：ホメーロス作『イーリアス』 {\colH{800000}\textbackslash cmuSerif\{}\cmuSerif{Ιλιάδα}{\colH{800000}\}} と 『オデュッセイア』ΟΔΥΣΣΕΙΑ\\
   \textbf{表示結果}：ホメーロス作『イーリアス』\cmuSerif{Ιλιάδα} と 『オデュッセイア』\cmuSans{ΟΔΥΣΣΕΙΑ} 。
 \end{itemize}
-
 
 \section{指定フォントによる表示例}
 \subsection{基本フォント: \textcolor{rred}{NotoSerifJP-Regular}（地文）}
@@ -384,11 +383,53 @@ https://www.gutenberg.org/cache/epub/30613/pg30613-images.html}
 }
 \end{itemize}
 
+\newpage
+
+\section{古代ギリシア語}
+
+\begin{itemize} 
+  \item 以下は WIKIPEDIA「古代ギリシア語」\footnote{古代ギリシア語 // ウィキペディア\\
+https://ja.wikipedia.org/wiki/古代ギリシア語}の解説の一部を引用したものです。
+  \item 正確に表記が再現されていることが確認出来ます。
+  \item {\gtfamily\colH{4d8fac}青字}の部分はハイフネーションンが適用されていることが確認出来ます。\vspace{-4mm}
+\end{itemize}
+\subsection{表記法}
+
+\begin{itemize} 
+  \item[]
+\subsubsection*{\colH{800000}ポリトニコス（複数アクセント）表記による古代ギリシア語}\par
+\fFSerif{\fs{16}
+    Ὅτι μὲν ὑμεῖς, ὦ ἄνδρες Ἀθηναῖοι, πεπόνθατε ὑπὸ τῶν ἐμῶν κατηγόρων, οὐκ οἶδα· ἐγὼ δ᾽ οὖν καὶ αὐτὸς ὑπ᾽ αὐτῶν ὀλίγου ἐμαυτοῦ ἐπελαθόμην, οὕτω πιθανῶς ἔλεγον. Καίτοι ἀληθές γε ὡς ἔπος εἰπεῖν οὐδὲν εἰρήκασιν.\footnote{プラトン『ソクラテスの弁明』冒頭部}}
+  \item[]
+\subsubsection*{\colH{800000}エラスムス式発音によるラテン文字転写}
+\fFSerif{\fs{16}
+    Hóti mèn humeîs, ô ándres Athēnaîoi, pepónthate hupò tôn emôn katēgórōn, ouk oîda: egṑ d' oûn kaì autòs hup' autôn olígou {\colH{4d8fac}emautoû} epelathómēn, hoútō pithanôs élegon. Kaítoi alēthés ge hōs épos eipeîn oudèn eirḗkasin.}\par
+\end{itemize}
+
+\subsection{SAMPLE TEXTS}
+\begin{itemize} 
+  \item[]The beginning of Homer's Iliad exemplifies the Archaic period of ancient Greek:\par
+\fFSerif{\fs{16}
+Μῆνιν ἄειδε, θεά, Πηληϊάδεω Ἀχιλῆος\\
+οὐλομένην, ἣ μυρί' Ἀχαιοῖς ἄλγε' ἔθηκε,\\
+πολλὰς δ' ἰφθίμους ψυχὰς Ἄϊδι προΐαψεν\\
+ἡρώων, αὐτοὺς δὲ ἑλώρια τεῦχε κύνεσσιν\\
+οἰωνοῖσί τε πᾶσι· Διὸς δ' ἐτελείετο βουλή·\\
+ἐξ οὗ δὴ τὰ πρῶτα διαστήτην ἐρίσαντε\\
+Ἀτρεΐδης τε ἄναξ ἀνδρῶν καὶ δῖος Ἀχιλλεύς.\\
+}
+
+The beginning of Apology by Plato exemplifies Attic Greek from the Classical period of ancient Greek:\\
+\fFSerif{\fs{16}
+    Ὅτι μὲν ὑμεῖς, ὦ ἄνδρες Ἀθηναῖοι, πεπόνθατε ὑπὸ τῶν ἐμῶν κατηγόρων, οὐκ οἶδα· ἐγὼ δ' οὖν καὶ αὐτὸς ὑπ' αὐτῶν ὀλίγου ἐμαυτοῦ ἐπελαθόμην, οὕτω πιθανῶς ἔλεγον. Καίτοι ἀληθές γε ὡς ἔπος εἰπεῖν οὐδὲν εἰρήκασιν.\footnote{Ancient Greek // Wikipedia\\https://en.wikipedia.org/wiki/Ancient\_Greek}
+}    
+\end{itemize}
+
 \section{TIPS} \vspace{-2mm}
 \subsection{SECTIONの文字化け} \vspace{-1mm}  
 \begin{itemize}
   \item SECTION内では、システム側で設定されているフォント（\textbf{lmsans12-regular}）がギリシャ文字を含まない為に、直接ギリシャ語を使うと文字化けします。\\
-  定義した欧文フォントをギリシャ文字列へ適用します(目次にも反映します)\\
+  定義した欧文フォントをギリシャ文字列へ適用します(目次にも反映します：SECTION 7 を参照)\\
   \bs section \{ {\colH{800000} \bs Carlito \{ <greek> \}} \}
   \item 他に問題が生じなければ、メインフォントを欧文フォント（例：\bs setmainfont\{Tinos-Regular\}）に設定することでも可能です（非推奨）。\vspace{-1mm}
 \end{itemize}
@@ -405,7 +446,7 @@ https://www.gutenberg.org/cache/epub/30613/pg30613-images.html}
 表示例： {\fRoboto \gtfamily Babel 及び Polyglossia は使用しません。}
 \end{itemize}
 
-\section{サンプル：{\fCmuntt Ομήρου Οδύσσεια Τόμος Α}}  
+\section{SECTIONサンプル：{\fCmuntt Ομήρου Οδύσσεια Τόμος Α}}  
 
 \end{document}
 
