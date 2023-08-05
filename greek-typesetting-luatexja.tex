@@ -388,7 +388,7 @@ https://www.gutenberg.org/cache/epub/30613/pg30613-images.html}
 \subsection{SECTIONの文字化け} \vspace{-1mm}  
 \begin{itemize}
   \item SECTION内では、システム側で設定されているフォント（\textbf{lmsans12-regular}）がギリシャ文字を含まない為に、直接ギリシャ語を使うと文字化けします。\\
-  定義した欧文フォントをギリシャ文字列へ適用します\\
+  定義した欧文フォントをギリシャ文字列へ適用します(目次にも反映します)\\
   \bs section \{ {\colH{800000} \bs Carlito \{ <greek> \}} \}
   \item 他に問題が生じなければ、メインフォントを欧文フォント（例：\bs setmainfont\{Tinos-Regular\}）に設定することでも可能です（非推奨）。\vspace{-1mm}
 \end{itemize}
