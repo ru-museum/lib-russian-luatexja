@@ -30,7 +30,7 @@ Library for Russian Typesetting on **LuaTeX-ja**.
 \usepackage{../lib/lib-russian-luatexja}
 % \usepackage{../lib/lib-greek-luatexja} % ギリシア語の場合
 ```
-- ロシア語用及びギリシャ語用共に読込めば、和文とロシア語そしてギリシャ語の混在文が可能です。
+- ギリシャ語用を共に読込めば、和文と露文そしてギリシャ語の混在文が可能です。
 ## 2. ロシア語資料の作成
 #### 詳細は以下に詳しく解説しています。
 [Template of Russian Typesetting on LuaTeX-ja: ロシア語資料の作成](https://github.com/ru-museum/lib-russian-luatexja/blob/main/russian-typesetting-luatexja.pdf)（russian-typesetting-luatexja.pdf）
