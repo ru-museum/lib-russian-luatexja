@@ -27,6 +27,7 @@ Library for Russian Typesetting with **LuaTeX-ja**.
 \documentclass[a4paper,10pt]{ltjsarticle}
 \usepackage[deluxe]{luatexja-preset} % 必須
 \usepackage{../lib/lib-russian-luatexja}
+% \usepackage{../lib/lib-greek-luatexja} % ギリシア語の場合
 ```
 ## 2. ロシア語資料の作成
 #### 詳細は以下に詳しく解説しています。
@@ -34,12 +35,8 @@ Library for Russian Typesetting with **LuaTeX-ja**.
 
 ## 3. ギリシア語資料の作成
 #### 詳細は以下に詳しく解説しています。
-[Template of Greek Typesetting on LuaTeX-ja: ロシア語資料の作成](https://github.com/ru-museum/lib-russian-luatexja/blob/main/russian-typesetting-luatexja.pdf)（greek-typesetting-luatexja.pdf）
+[Template of Greek Typesetting on LuaTeX-ja: ギリシア語資料の作成](https://github.com/ru-museum/lib-russian-luatexja/blob/main/greek-typesetting-luatexja.pdf)（greek-typesetting-luatexja.pdf）
 
 # TODO
-- Babel 及び Polyglossia 版の追加。 
-
-
-
-
-
+- Babel 及び Polyglossia 版の追加。
+ 
