@@ -1,5 +1,5 @@
 # lib-russian-luatexja
-Library for Russian Typesetting with **LuaTeX-ja**. 
+Library for Russian Typesetting on **LuaTeX-ja**. 
 
 # 概要
 これは、日本語文書組版パッケージ **LuaTeX-ja** での環境 ( **ltjsclasses** ) における**ロシア語プロポーショナル表記用ライブラリイ**です。  
