@@ -1,0 +1,411 @@
+\documentclass[a4paper,10pt]{ltjsarticle}
+
+% LINK
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{pdfborder={0 0 0.5}}
+
+% 色の使用
+\usepackage{xcolor}
+% 色定義
+\definecolor{mylinkcolor}{RGB}{3, 112, 145}
+\definecolor{clBlue}{RGB}{3, 112, 145}
+\definecolor{linkcol}{RGB}{2, 106, 77}
+\definecolor{rred}{RGB}{128, 0, 0}
+\hypersetup{
+    colorlinks=true,
+    citecolor=blue,
+    linkcolor=linkcol, 
+    urlcolor=mylinkcolor
+}
+% HTML(#800000)色定義
+\def\colH#1{\color[HTML]{#1}}
+
+% FONT-SIZE 定義
+\def\fs#1{\fontsize{#1}{#1}\selectfont }
+% BACKSLASH 定義
+\def\bs{\textbackslash }
+
+
+% 画像挿入
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{svg} 
+
+\usepackage[deluxe]{luatexja-preset}
+\usepackage{./lib/lib-greek-luatexja}
+
+% MAINFONT
+\setmainfont{NotoSerifJP-Regular}%
+\setsansfont{NotoSansJP-Regular}
+\setmonofont{FreeMono}
+
+% 使用するフォント定義
+\newfontfamily\fRoboto{roboto} % roboto [Script=CJK]
+\newfontfamily\robotoSlab{RobotoSlab-Regular} % roboto [Script=CJK]
+\newfontfamily\cmuSerif{CMU Serif} % FreeSerif  
+\newfontfamily\cmuSans{NewCMSans10-Regular} % FreeSerif
+\newfontfamily\Carlito{Carlito-Regular} % FreeSerif
+\newfontfamily\Arimo{Arimo-Regular} % FreeSerif
+\newfontfamily\fFSerif{FreeSerif} % FreeSerif
+\newfontfamily\fFSans{FreeSans} % FreeSerif
+\newfontfamily\fCmuntt{cmuntt} % FreeSerif
+\newfontfamily\fCmctt{cmctt10} % FreeSerif
+
+% FONT-SIZE
+\def\fs#1{\fontsize{#1}{#1}\selectfont }
+
+% 
+% SECTIONの定義
+% 
+\usepackage{titlesec}
+\titleformat{\section}[block]{\Carlito \gtfamily \large}{\thesection}{0.5em}{}% 
+\titleformat{\subsection}[block]{\Carlito \gtfamily \large}{\thesubsection}{0.5em}{}% 
+
+\title{
+  \huge Template of Greek Typesetting\\ with Lua\TeX{}-ja\vspace{16mm} \par
+  \par\vspace{140mm}
+}
+\author{\href{https://github.com/ru-museum/}{ru\_museum} (GitHub)}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+  
+\tableofcontents
+\thispagestyle{empty}
+
+\newpage
+
+\section{概要}
+
+これは、日本語文書組版パッケージ {\colH{800000} LuaTeX-ja} での環境 ( {\colH{800000} ltjsclasses}\footnote{jsclasses を LuaTeX-ja 用に改変したもの。ltjsarticle 他がある。} ) において和文とギリシア語との混在文を作成する為の記述方法を解説するものです。\vspace{6pt}\\
+基本を和文フォントとする LuaTeX-ja 環境では、ロシア及びギリシア文字は和文フォントに割り振られている為に{\gtfamily 等幅表示}されることから{\gtfamily プロポーショナル表記}に難があり、単語のハイフネーションや禁則処理に乱れを生じます。\vspace{6pt}\par
+
+従来LaTeX{}では多言語混在の文書作成にはp\LaTeX{} 由来の class \textbf{"article"}と{\fRoboto\gtfamily Babel}の組み合わせ、更にはその代替の{\fRoboto\gtfamily Polyglossia}が用いられて来ています。\vspace{6pt}\par
+
+LuaTeX-ja（ltjsarticle等）環境においてもそれら両者を使用することは出来ますが、基本を和文フォントとする以上問題は解決されません。\vspace{6pt}\par
+
+ここではそれらを用いずギリシア語のプロポーショナル表記を可能とし自由に編集が出来ます\footnote{ギリシア語も基本的にロシア文字と扱いが同じで、同梱の{\colH{800000} lib-russian-luatexja}を用いればギリシア語とロシア語の混在文も可能です（フォント指定によるマークアップが必要）}。\vspace{-2mm}
+
+\section{環境構築}
+\vspace{-2mm}
+\begin{itemize} 
+  \item ここではGNU/Linux Debian (sid) での使用例です。\vspace{-4mm}
+\end{itemize}
+
+\subsection{インストールパッケージ}
+\vspace{-2mm}
+\begin{quote}
+\begin{verbatim}
+texlive-base v. 2022.20230122-3(sid)  
+texlive-luatex
+texlive-lang-japanese（LuaTeX-ja）
+texlive-lang-greek（ギリシャ語フォント、babel-greek等）
+\end{verbatim}\vspace{-4mm}
+\end{quote}
+
+\subsection{フォントの準備}\vspace{-2mm}
+
+\subsubsection{和文フォント}
+
+\begin{itemize}
+  \item 基本を和文フォントとする LuaTeX-ja 環境において、適正に表示の行える{\gtfamily 基本設定和文フォント}には主に以下のものがあります。
+  \vspace{-2mm}
+\begin{quote}
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{l|l}
+\textbf{対応和文フォント} & \textbf{フォント名}\\
+\hline\vspace{-4mm}\\
+\href{https://fonts.google.com/noto/specimen/Noto+Serif+JP}{NotoSerifJP} & Noto Serif Japanese(Google Fonts)\\
+ & {\fs{9}//fonts.google.com/noto/specimen/Noto+Serif+JP}\\
+\href{https://github.com/notofonts/noto-cjk}{NotoSerifCJK} &  Noto CJK fonts(GitHub)\\
+ & {\fs{9}//github.com/notofonts/noto-cjk}\\
+\href{https://github.com/adobe-fonts/source-serif/tree/release/OTF}{SourceSerif4} & Source Serif(adobe-fonts/GitHub)\\
+ & {\fs{9}//github.com/adobe-fonts/source-serif/tree/release/OTF}\\
+\href{https://github.com/IBM/plex/tree/master/IBM-Plex-Serif/fonts/complete/otf}{IBMPlexSerif} & IBM Plex typeface(GitHub)\\ 
+ & {\fs{9}//github.com/IBM/plex/tree/master/IBM-Plex-Serif/fonts/complete/otf}\\
+\end{tabular}
+\caption{主要和文フォント}
+\end{center}
+\end{table}
+\end{quote}    
+\end{itemize}
+
+\subsubsection{欧文フォント（ギリシャ語用）}
+
+\begin{itemize} 
+  \item 基本Linux及びTexLiveに同梱の欧文書体を使用しますが、以下からもダウンロード可能です。\\
+  各自の環境においてTexLive及びOS付属の使用可能なフォントを試して下さい。\\ 
+\href{https://ctan.org/topic/font-otf}{OTF Font} (CTAN: OpenType/TrueTypeの欧文フォント)
+//ctan.org/topic/font-otf\\
+\href{https://fonts.google.com/}{Google Fonts} //fonts.google.com/
+
+\end{itemize}
+
+\begin{itemize}
+  \item ギリシャ語は、使用できるフォントが限られています。\\
+以下に例示するのは適正な表示の出来る主なフォントです。\vspace{-4mm}
+\end{itemize}
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{l|c|l}
+\textbf{フォント名} & \textbf{提供元} & \textbf{用途}\\
+\hline
+Carlito-Regular & Google & 欧文\\% 
+NotoSans-Medium & Google & 欧文\\%
+Arimo-Regular & Google & 欧文\\%
+Tinos-Regular & Google & 欧文\\%
+\end{tabular}
+\caption{ギリシャ語向け欧文主要フォント}
+\end{center}
+\end{table}
+\vspace{-8mm}
+
+\subsection{フォントのインストール}
+\begin{itemize}
+  \item インストールするフォルダの位置は環境により異なります。\vspace{-4mm}
+\end{itemize}
+
+\subsubsection{和文フォント}
+
+\begin{enumerate}
+  \item OTF/TTFのフォントは/<opentype | truetype>或いは/<opentype | truetype>/publicフォルダへ追加します。\\
+【インストール例】\\
+/usr/share/texlive/texmf-dist/fonts/{\colH{800000} opentype/adobe/sourcehanserif/*.otf}\\
+/usr/share/texlive/texmf-dist/fonts/{\colH{800000} opentype/google/noto/*.otf}  
+  \item OS付属の/usr/share/fontsにある各種フォントも基本的に使用可能です。\vspace{-2mm}
+\end{enumerate}
+
+\subsubsection{欧文フォント（ギリシャ語用）}
+
+\begin{itemize}
+  \item 基本TexLiveに同梱の欧文書体を使用します。\\
+  FreeSerif, FreeSans, CMU Serif, CMU Sans, NewCMSans10-Regular等 
+  \item OTF/TTFのフォントも使用が可能です。\\
+  {\colH{800000} /<opentype | truetype>}或いは{\colH{800000} /<opentype | truetype>/public}フォルダへ追加します。
+  \item {\Carlito texlive-lang-greek}によりインストールされるtype1等はこの場合LuaLa\TeX{}に\textbf{不適合}\footnote{LuaLa\TeX{}以前のLa\TeX{}などが使用するエンコード命令等の関連で。}でした。
+\end{itemize}
+
+\section{作成手順}
+
+\subsection{ライブラリーの読込}
+{\colH{800000} lib-greek-luatexja.sty} パッケージを読込みます。
+\vspace{-2mm}
+\begin{verbatim}
+  \usepackage[deluxe]{luatexja-preset} % 必須
+  \usepackage{./lib/lib-greek-luatexja} 
+\end{verbatim}
+\vspace{-6mm}
+    
+\subsection{フォントの設定と定義}
+
+\subsubsection{基本フォントの指定}
+\begin{itemize}
+  \item[]\hspace{-5mm} {\colH{800000}\bs setmainfont\{ <font> \}}
+  \item このTemplateの基本和文フォントには{\colH{800000} NotoSerifJP-Regular}が設定されています。
+  \item 基本指定した和文フォントは全体に適用されます。特に指定がなければデフォルトのHarano Aji Fonts（haranoaji）が設定されます。
+  \item 現在適正に表記の出来る\textbf{主な基本設定向けフォント}は以下のものがあります。\\
+  インストール方法は 「{\fFSans\gtfamily 2.3 フォントのインストール}」を参照して下さい。\vspace{-4mm}
+\end{itemize}
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{l|c|l}
+\textbf{フォント名} & \textbf{提供元} & \textbf{用途}\\
+\hline
+NotoSerifCJKjp-Regular & Google & 和文\\%
+NotoSerifJP-Regular & Google & 和文\\%
+SourceSerif4-Regular & Adobe & 和文\\%
+SourceSerifJP-Regular & Adobe & 和文\\%
+SourceHanSerif-Regular & Adobe & 和文\\%
+SourceHanSans-Regular & Adobe & 和文\\%
+IBMPlexSerif-Regular & IBM & 和文\\%
+RobotoSlab-Regular & Google & 欧文\\%
+NewCMSans10-Regular & TexLive & 欧文\\%
+CMU Serif, CMU Sans & TexLive & 欧文\\%
+FreeSerif, FreeSans & TexLive & 欧文\\%
+\end{tabular}
+\caption{基本設定に適する主要フォント}
+\end{center}
+\end{table}
+\vspace{-6mm}
+
+\subsubsection{個別フォントの定義}
+\begin{itemize}
+  \item[] {\colH{800000} \textbackslash newfontfamily\textbackslash<command>\{<fontname>\}}
+\vspace{-2mm}
+\begin{verbatim}
+定義例：\newfontfamily\fArial{arial}
+      \newfontfamily\fRoboto{roboto} % Google OTF
+\end{verbatim} 
+\vspace{-2mm}
+  \item <command>名は自由に宣言出来ます。  
+  \item インストールされているフォントを確認し試行を行って下さい。\\
+OS（Debian）: /usr/share/fonts/\\
+TexLive: /usr/share/texlive/texmf-dist/fonts/
+\end{itemize}
+
+\subsubsection{混在文におけるフォント指定}
+\begin{itemize}
+  \item[] {\colH{800000} \textbackslash <command>\{<text>\}}
+  \item ギリシャ語は和文フォントへの収録が不完全な為そのままでは一部文字化けする場合がありますので、欧文フォントによる指定が必要です。ギリシャ語は全て指定することをお薦めします。
+  \item[] 
+  \textbf{無指定}：ホメーロス作『イーリアス』Ιλι{\colH{800000}ά}δα と 『オデュッセイア』ΟΔΥΣΣΕΙΑ。\\
+  \textbf{指定例}：ホメーロス作『イーリアス』 {\colH{800000}\textbackslash cmuSerif\{}\cmuSerif{Ιλιάδα}{\colH{800000}\}} と 『オデュッセイア』ΟΔΥΣΣΕΙΑ\\
+  \textbf{表示結果}：ホメーロス作『イーリアス』\cmuSerif{Ιλιάδα} と 『オデュッセイア』\cmuSans{ΟΔΥΣΣΕΙΑ} 。
+\end{itemize}
+
+
+\section{指定フォントによる表示例}
+\subsection{基本フォント: \textcolor{rred}{NotoSerifJP-Regular}（地文）}
+
+\begin{itemize} 
+  \item[]
+\textbf{和文}\\
+\hspace{3mm} 日本国民は正当に選挙された国会における代表者を通じて行動し、われらとわれらの子孫のために、諸国民と協和による成果と、わが国全土にわたって自由のもたらす恵沢を確保し、政府の行為によって再び戦争の惨禍が起こることのないようにすることを決意し、ここに主権が国民に存することを宣言し、この憲法を確定する。そもそも国政は国民の厳粛な信託によるものであって、その権威は国民に由来し、その権力は国民の代表者がこれを行使し、その福利は国民がこれを享受する。これは人類普遍の原理であり、この憲法は、かかる原理に基づくものである。われらはこれに反する一切の憲法、法令及び詔勅を排除する。\par
+
+\hspace{3mm} 日本国民は、恒久の平和を念願し、人間相互の関係を支配する崇高な理想を深く自覚するのであって、平和を愛する諸国民の公正と信義を信頼して、われらの安全と生存を保持しようと決意した。われらは平和を維持し、専制と隷従、圧迫と偏狭を地上から永遠に除去しようと努めている国際社会において、名誉ある地位を占めたいと思う。われらは全世界の国民が、ひとしく恐怖と欠乏から免れ、平和の内に生存する権利を有することを確認する。\par
+
+\hspace{3mm} われらは、いずれの国家も、自国のことのみに専念して他国を無視してはならないのであって、政治道徳の法則は、普遍的なものであり、この法則に従うことは、自国の主権を維持し、他国と対等関係に立とうとする各国の責務であると信ずる。\par
+
+日本国民は、国家の名誉にかけて、全力をあげて崇高な理想と目的を達成することを誓う。\footnote{「日本国憲法」 前文}\par\vspace{-4mm}
+\end{itemize}
+
+\subsection{欧文フォント：ギリシャ語用}
+\vspace{-2mm}
+\subsubsection{指定フォント: \textcolor{rred}{Carlito}}
+\begin{itemize} 
+  \item[]
+\subsubsection*{\Carlito{Ιλιάδα}: Iliad. (Greek)}
+\Carlito{
+μῆνιν ἄειδε θεὰ Πηληϊάδεω Ἀχιλῆος\\
+οὐλομένην, ἣ μυρί᾽ Ἀχαιοῖς ἄλγε᾽ ἔθηκε,\\
+πολλὰς δ᾽ ἰφθίμους ψυχὰς Ἄϊδι προΐαψεν\\
+ἡρώων, αὐτοὺς δὲ ἑλώρια τεῦχε κύνεσσιν\\
+οἰωνοῖσί τε πᾶσι, Διὸς δ᾽ ἐτελείετο βουλή,\\
+ἐξ οὗ δὴ τὰ πρῶτα διαστήτην ἐρίσαντε\\
+Ἀτρεΐδης τε ἄναξ ἀνδρῶν καὶ δῖος Ἀχιλλεύς.\\
+τίς τ᾽ ἄρ σφωε θεῶν ἔριδι ξυνέηκε μάχεσθαι;\\
+Λητοῦς καὶ Διὸς υἱός: ὃ γὰρ βασιλῆϊ χολωθεὶς\\
+νοῦσον ἀνὰ στρατὸν ὄρσε κακήν, ὀλέκοντο δὲ λαοί,\\
+οὕνεκα τὸν Χρύσην ἠτίμασεν ἀρητῆρα\\
+Ἀτρεΐδης: ὃ γὰρ ἦλθε θοὰς ἐπὶ νῆας Ἀχαιῶν\\
+λυσόμενός τε θύγατρα φέρων τ᾽ ἀπερείσι᾽ ἄποινα,\footnote{Homer. Iliad. (Greek) // Perseus Digital Library\\
+https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0133}
+}
+\end{itemize}
+
+\subsubsection{指定フォント: \textcolor{rred}{NewCMSans10-Regular}}
+\begin{itemize} 
+  \item[]
+\subsubsection*{\cmuSans{Ιλιάδα}: Iliad. (Greek)}
+\cmuSans{
+μῆνιν ἄειδε θεὰ Πηληϊάδεω Ἀχιλῆος\\
+οὐλομένην, ἣ μυρί᾽ Ἀχαιοῖς ἄλγε᾽ ἔθηκε,\\
+πολλὰς δ᾽ ἰφθίμους ψυχὰς Ἄϊδι προΐαψεν\\
+ἡρώων, αὐτοὺς δὲ ἑλώρια τεῦχε κύνεσσιν\\
+οἰωνοῖσί τε πᾶσι, Διὸς δ᾽ ἐτελείετο βουλή,\\
+ἐξ οὗ δὴ τὰ πρῶτα διαστήτην ἐρίσαντε\\
+Ἀτρεΐδης τε ἄναξ ἀνδρῶν καὶ δῖος Ἀχιλλεύς.\\
+τίς τ᾽ ἄρ σφωε θεῶν ἔριδι ξυνέηκε μάχεσθαι;\\
+Λητοῦς καὶ Διὸς υἱός: ὃ γὰρ βασιλῆϊ χολωθεὶς\\
+νοῦσον ἀνὰ στρατὸν ὄρσε κακήν, ὀλέκοντο δὲ λαοί,\\
+οὕνεκα τὸν Χρύσην ἠτίμασεν ἀρητῆρα\\
+Ἀτρεΐδης: ὃ γὰρ ἦλθε θοὰς ἐπὶ νῆας Ἀχαιῶν\\
+λυσόμενός τε θύγατρα φέρων τ᾽ ἀπερείσι᾽ ἄποινα,\\
+}
+\end{itemize}
+
+\subsubsection{指定フォント: \textcolor{rred}{FreeSans}}
+\begin{itemize} 
+  \item[]
+\subsubsection*{\fFSans{Ιλιάδα}: Iliad. (Greek)}
+\fFSans{
+μῆνιν ἄειδε θεὰ Πηληϊάδεω Ἀχιλῆος\\
+οὐλομένην, ἣ μυρί᾽ Ἀχαιοῖς ἄλγε᾽ ἔθηκε,\\
+πολλὰς δ᾽ ἰφθίμους ψυχὰς Ἄϊδι προΐαψεν\\
+ἡρώων, αὐτοὺς δὲ ἑλώρια τεῦχε κύνεσσιν\\
+οἰωνοῖσί τε πᾶσι, Διὸς δ᾽ ἐτελείετο βουλή,\\
+ἐξ οὗ δὴ τὰ πρῶτα διαστήτην ἐρίσαντε\\
+Ἀτρεΐδης τε ἄναξ ἀνδρῶν καὶ δῖος Ἀχιλλεύς.\\
+τίς τ᾽ ἄρ σφωε θεῶν ἔριδι ξυνέηκε μάχεσθαι;\\
+Λητοῦς καὶ Διὸς υἱός: ὃ γὰρ βασιλῆϊ χολωθεὶς\\
+νοῦσον ἀνὰ στρατὸν ὄρσε κακήν, ὀλέκοντο δὲ λαοί,\\
+οὕνεκα τὸν Χρύσην ἠτίμασεν ἀρητῆρα\\
+Ἀτρεΐδης: ὃ γὰρ ἦλθε θοὰς ἐπὶ νῆας Ἀχαιῶν\\
+λυσόμενός τε θύγατρα φέρων τ᾽ ἀπερείσι᾽ ἄποινα,\\
+}
+\end{itemize}
+
+\subsubsection{指定フォント: \textcolor{rred}{FreeSerif}}
+\begin{itemize} 
+  \item[]
+\subsubsection*{\fFSerif{Οδύσσεια}: Odyssey. (Greek)}
+\fFSerif{
+Ραψωδία Α\\%
+Τον άνδρα, μούσα, λέγε μου, πολύτροπον, 'που εις μέρη\\%
+πολλά επλανήθη, αφού έρριξε την ιερήν Τρωάδα·\\%
+και ανθρώπων είδε αυτός πολλών ταις χώραις και την γνώμην\\%	
+έμαθε, και 'ς τα πέλαγα πολλά 'παθε ζητώντας\\%
+με τους συντρόφους άβλαπτος να φθάση 'ς την πατρίδα.\\%
+αλλ' όμως δεν κατώρθωσε να σώση τους συντρόφους·\\%
+ότι εχαθήκαν μόνοι τους απ' τ' ανομήματά τους·\\%
+μωροί, 'που τ' Υπερίονα Ήλιου τα βώδια 'φάγαν,\\%
+κ' εκείνος της επιστροφής τους πήρε την ημέρα.\\%	
+τούτα ειπέ κάπουθε κ' εμάς, θεά, κόρη του Δία.\footnote{The Project Gutenberg eBook of{\fCmuntt Ομήρου Οδύσσεια Τόμος Α}\\
+https://www.gutenberg.org/cache/epub/30613/pg30613-images.html}
+}
+\end{itemize}
+
+\subsubsection{指定フォント: \textcolor{rred}{Arimo}}
+\begin{itemize} 
+  \item[]
+\subsubsection*{\Arimo{Οδύσσεια}: Odyssey. (Greek)}
+\Arimo{
+Ραψωδία Α\\%
+Τον άνδρα, μούσα, λέγε μου, πολύτροπον, 'που εις μέρη\\%
+πολλά επλανήθη, αφού έρριξε την ιερήν Τρωάδα·\\%
+και ανθρώπων είδε αυτός πολλών ταις χώραις και την γνώμην\\%	
+έμαθε, και 'ς τα πέλαγα πολλά 'παθε ζητώντας\\%
+με τους συντρόφους άβλαπτος να φθάση 'ς την πατρίδα.\\%
+αλλ' όμως δεν κατώρθωσε να σώση τους συντρόφους·\\%
+ότι εχαθήκαν μόνοι τους απ' τ' ανομήματά τους·\\%
+μωροί, 'που τ' Υπερίονα Ήλιου τα βώδια 'φάγαν,\\%
+κ' εκείνος της επιστροφής τους πήρε την ημέρα.\\%	
+τούτα ειπέ κάπουθε κ' εμάς, θεά, κόρη του Δία.
+}
+\end{itemize}
+
+\section{TIPS} \vspace{-2mm}
+\subsection{SECTIONの文字化け} \vspace{-1mm}  
+\begin{itemize}
+  \item 定義した欧文フォントをギリシャ文字列へ適用します\\
+  \bs section \{ {\colH{800000} \bs Carlito \{ <greek> \}} \}
+  \item 他に問題が生じなければ、メインフォントを欧文フォント（例：\bs setmainfont\{Tinos-Regular\}）に設定することでも可能です（非推奨）。\vspace{-1mm}
+\end{itemize}
+\subsection{FOOTNOTEの文字化け} \vspace{-1mm}  
+\begin{itemize}
+  \item FOOTNOTEにおいてもSECTIONと同様に直接ギリシア語を記述すると文字化けしますので、定義した欧文フォントを適用して下さい。\\
+記述例： \bs footnote\{The Project Gutenberg eBook of {\colH{800000}\{\bs fCmuntt} \fCmuntt Ομήρου Οδύσσεια Τόμος Δ{\colH{800000}\}}\}
+\end{itemize}
+
+\subsection{太字の強調}  
+\begin{itemize}
+  \item 太字強調の効果が余り明瞭でない時は、Sans（roboto 等）系フォントと \bs gtfamilyとを重ねて適用して下さい。\\
+記述例： \{{\colH{800000}\bs fRoboto \bs gtfamily} Babel 及び Polyglossia は使用しません。\}\\
+表示例： {\fRoboto \gtfamily Babel 及び Polyglossia は使用しません。}
+\end{itemize}
+
+\section{サンプル：{\fCmuntt Ομήρου Οδύσσεια Τόμος Α}}  
+
+\end{document}
+
+
+
+    
