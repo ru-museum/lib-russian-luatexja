@@ -19,6 +19,7 @@ Library for Russian Typesetting on **LuaTeX-ja**.
 - texlive-base v. ２０２２.２０２３０１２２-３（2023）
 - texlive-luatex
 - texlive-lang-cyrillic（babel-russian やフォント類）
+- texlive-lang-greek（babel-greek やフォント類） % ギリシア語の場合
 
 # 使用方法
 
