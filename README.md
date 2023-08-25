@@ -13,6 +13,7 @@ Library for Russian Typesetting on **LuaTeX-ja**.
 - Babel 及び Polyglossia は使用していません。  
 但し別の実際例として、Babel( article ) 及び polyglossia( ltjsarticle ) を用いた template を予定しています。
 - 同じ条件である**ギリシャ語**用のライブラリイ **lib-greek-luatexja** も同梱しています（参照：**greek-typesetting--luatexja** ）。
+- [教会スラヴ語: Church Slavonic Typesetting in LuaTeX-ja](https://github.com/ru-museum/lib-russian-luatexja/blob/main/churchslavonic-luatexja.pdf)（**churchslavonic-luatexja.pdf**）は**教会スラヴ語**（Church Slavonic）の表記に対応しています。
 - DebianでのLuaLaTeXの使用方法はこちらで解説しています。[LuaLaTeX with Debian: 環境構築と作業手順](https://github.com/ru-museum/lib-russian-luatexja/blob/main/lualatex-with-debian.pdf)（lualatex-with-debian.pdf）
 
 # 環境構築
