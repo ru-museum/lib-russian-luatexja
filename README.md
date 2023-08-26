@@ -41,6 +41,10 @@ Library for Russian Typesetting on **LuaTeX-ja**.
 #### 詳細は以下に詳しく解説しています。
 [Template of Greek Typesetting on LuaTeX-ja: ギリシア語資料の作成](https://github.com/ru-museum/lib-russian-luatexja/blob/main/greek-typesetting-luatexja.pdf)（greek-typesetting-luatexja.pdf）
 
+## 3. 教会スラヴ語（Church Slavonic）資料の作成
+#### 詳細は以下に詳しく解説しています。
+[教会スラヴ語: Church Slavonic Typesetting in LuaTeX-ja](https://github.com/ru-museum/lib-russian-luatexja/blob/main/churchslavonic-luatexja.pdf)（**churchslavonic-luatexja.pdf**）
+
 # TODO
 - Babel 及び Polyglossia 版の追加。
  
