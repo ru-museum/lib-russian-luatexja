@@ -6,6 +6,9 @@
 \usepackage{substr}
 \setcounter{secnumdepth}{4}
 
+\usepackage{graphicx} 
+\usepackage{float} 
+
 % LINK
 \usepackage{url}
 \usepackage{hyperref}
@@ -35,8 +38,18 @@
 % \setlength\parindent{0pt} % 段落はじめの空白を除去
 
 % FONT 
-\usepackage[deluxe]{luatexja-preset}
+\usepackage{luatexja-otf}% UTF CID
+% \usepackage[deluxe]{luatexja-preset}
+\usepackage{luatexja-fontspec}
+
+
 \usepackage{./lib/lib-russian-luatexja} 
+\ltjdefcharrange{8}
+{
+"2626-"262E
+%,"E000-"EDEA,"F340-"FE2F,"2E2A-"2E43,"10FB-"1DC1 % 記号：☦ ☩ ☪ ☫ ☬ ☭ ☮
+}
+
 
 \def\basefont{NotoSerifCJKjp-Regular} 
 \setmainfont{\basefont} 
@@ -44,6 +57,8 @@
 \def\myMainfont{
   \BeforeSubString{-Regular}{\basefont}
 }
+\setsansfont{NotoSans}
+\setmonofont{RobotoMono-Light}% NotoSansMono
 
 % 
 % フォントの定義設定
@@ -58,6 +73,37 @@
 \newfontfamily\fCRoman{Crimson-Roman}
 \newfontfamily\fDjVSerif{DejaVuSerif}
 \newfontfamily\fDjVSans{DejaVuSans}
+
+\newfontfamily\chIrmIEUcs{IrmIEUcs}
+
+%%
+%% キリル文字フォント用の設定
+%%
+\newfontfamily\cyrillicfontsf[Script=Cyrillic,Ligatures=TeX]{PomorskyUnicode}%FreeSerif
+\newfontfamily\cyrillicfonttt[Ligatures=TeX]{PomorskyUnicode}
+\newfontfamily\russianfont[Script=Cyrillic,Ligatures=TeX]{Linux Libertine O}
+\newfontfamily\russianfonttt[Ligatures=TeX]{lmmono10-regular.otf}
+\newfontfamily\russianfontsf[Ligatures=TeX]{lmsans10-regular.otf}
+\newfontfamily\churchslavonicfont[Script=Cyrillic,Ligatures=TeX,HyphenChar=_]{PonomarUnicode.otf}
+
+%%
+%% fonts-churchslavonic：教会スラヴ語フォントの定義
+%% /usr/share/texlive/texmf-dist/fonts/opentype/public/fonts-churchslavonic
+\newfontfamily\Acathist[Script=Cyrillic,Ligatures=TeX]{Acathist-Regular.otf}
+\newfontfamily\Cathisma[Script=Cyrillic,Ligatures=TeX]{CathismaUnicode.otf}
+\newfontfamily\Fedorovsk[Script=Cyrillic,Ligatures=TeX]{FedorovskUnicode.otf}
+\newfontfamily\Indiction[Script=Cyrillic,Ligatures=TeX]{IndictionUnicode.otf}
+\newfontfamily\Menaion[Script=Cyrillic,Ligatures=TeX]{MenaionUnicode.otf}
+\newfontfamily\MezenetsNo[Script=Cyrillic,Ligatures=TeX]{MezenetsUnicode.otf}
+\newfontfamily\Mezenets[Script=Cyrillic,Ligatures=TeX]{MezenetsUnicode.otf}
+\newfontfamily\Monomakh[Script=Cyrillic,Ligatures=TeX]{MonomakhUnicode.otf}
+\newfontfamily\Oglavie[Script=Cyrillic,Ligatures=TeX]{OglavieUnicode.otf}
+\newfontfamily\Pochaevsk[Script=Cyrillic,Ligatures=TeX]{PochaevskUnicode.otf}
+\newfontfamily\Pomorsky[Script=Cyrillic,Ligatures=TeX]{PomorskyUnicode.otf}
+\newfontfamily\Ponomar[Script=Cyrillic,Ligatures=TeX]{PonomarUnicode.otf}
+\newfontfamily\Shafarik[Script=Cyrillic,Ligatures=TeX]{Shafarik-Regular.otf}
+\newfontfamily\Triodion[Script=Cyrillic,Ligatures=TeX]{TriodionUnicode.otf}
+\newfontfamily\Vertograd[Script=Cyrillic,Ligatures=TeX]{VertogradUnicode.otf}
 
 % 
 % SECTIONの定義
@@ -373,7 +419,7 @@ https://tolstoy.ru/upload/iblock/a58/18\_tom.pdf // Льв Толстой(Tolsto
 
 \begin{itemize}
   \item ロシア語翻字を表記するには、収録されているフォントを指定する必要があります。
-  \item 現在適正表記の出来るフォントには{\colH{800000}DejaVuSans}（DejaVuSerifは不可）、{\colH{800000}FreeSerif}、{\colH{800000}FreeSans}等があります。
+  \item 現在適正表記の出来るフォントには{\colH{800000}DejaVuSans}\footnote{DejaVuSerifは不可。}、{\colH{800000}FreeSerif}、{\colH{800000}FreeSans}\footnote{gnu-freefontとしてTexLiveによりデフォルトでインストールされています。\\/usr/share/texlive/texmf-dist/fonts/opentype/public/gnu-freefont/Free*.otf}等があります。
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{l|l|l}
@@ -389,6 +435,63 @@ https://tolstoy.ru/upload/iblock/a58/18\_tom.pdf // Льв Толстой(Tolsto
   詳しくは\textbf{\gtfamily 7.4 BibLaTeX内での翻字表記}を参照して下さい。
 \end{itemize}
 
+
+\section{教会スラブ語（Church Slavonic）}
+
+\begin{itemize}
+  \item 教会スラブ語の表記も可能です。\\
+ \verb+\usepackage{churchslavonic}+
+
+\textbf{表記例：}\\
+\Monomakh{Хрⷭ҇то́съ воскре́се и҆з̾ ме́ртвыхъ, сме́ртїю сме́рть попра́въ, и҆ сꙋ́щымъ во гробѣ́хъ живо́тъ дарова́въ.\\
+Послѣ́дованїе моле́бнагѡ пѣ́нїѧ ст҃ ы̑ мъ мч҃ камъ к҃ \_гѡ вѣ́ка, въ Са́нктъ\_
+Петербꙋр́ жстѣй дꙋхо́внѣй а҆каде́мїи нача̑льствовавшимъ, ᲂу҆ чи̑ вшимъ и҆ ᲂу҆
+чи̑ вшимсѧ}
+
+  \item 詳しくはこちらに解説しています。\\
+  \href{https://github.com/ru-museum/lib-russian-luatexja/blob/main/churchslavonic-luatexja.pdf}{教会スラヴ語：Church Slavonic Typesetting in LuaTeX-ja}（churchslavonic-luatexja.pdf）
+\end{itemize}\vspace{-4mm}
+
+\section{特別な文字・記号の表記}
+
+\subsection{記号の表記方法}\vspace{-2mm}
+
+\begin{itemize}
+  \item フォントビューワーで使用する記号及びUnicode番号を調べます(参照：\textbf{12 付録：Cyrillic Unicode 表})。\\[-14pt] 
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{./images/unicode.png}  
+\caption{記号のUnicode番号} 
+\end{figure}
+\vspace{-6mm}
+  \item[] \textbf{方法１}：直接記号を記述する。\\[-12pt]
+\begin{quote}
+  \textbf{記述例：}\verb+{\jfontspec{FreeSerif} +{\jfontspec{FreeSerif}\fs{12}☦☭☁☂☃☇☠♁♂♃♄♅}\verb+}+\\
+  \textbf{表示例：}{\jfontspec{FreeSerif}\fs{14}☦☭☁☂☃☇☠♁♂♃♄♅}\\[-10pt]
+  \end{quote}
+
+  \item[] \textbf{方法２}：Unicodeで指定し記述する。\\[-12pt]
+\begin{quote}
+\verb+\UTF{<unicode>}+ \% \verb+\usepackage{luatexja-otf}+ が必要\\
+\textbf{記述例：}\vspace{-11.2mm}\\
+\begin{verbatim}
+      {\jfontspec{FreeSerif} \UTF{2626}\UTF{2627}\UTF{2628}
+                             \UTF{2629}\UTF{262A}\UTF{262B}
+                             \UTF{262C}\UTF{262D}\UTF{262E}}
+\end{verbatim} 
+  \textbf{表示例：}{\jfontspec{FreeSerif}\fs{14}
+      \UTF{2626}\UTF{2627}\UTF{2628}\UTF{2629}
+      \UTF{262A}\UTF{262B}\UTF{262C}\UTF{262D}\UTF{262E}}
+\end{quote}
+  
+  \item[] \textbf{方法３}：個々の文字・記号或いは範囲を指定する。\footnote{この場合直接記述或いは \bs jfontspecで記述出来ますが、TABLE内等の閉じられた環境に依っては \bs fontspecで指定しないとエラーとなります。}
+\begin{quote}
+   例："2626-"262E（☦ ☩ ☪ ☫ ☬ ☭ ☮）　
+\begin{verbatim}
+\ltjdefcharrange{8}{ "2626,"2627-"262E }
+\end{verbatim}
+\end{quote}
+\end{itemize}
 
 \section{BibLaTeX + Biberの導入}
 \vspace{-2mm}
@@ -431,7 +534,7 @@ https://tolstoy.ru/upload/iblock/a58/18\_tom.pdf // Льв Толстой(Tolsto
   \item[]\textbf{解決法１：フォントの適用}\\
   独自に定義したロシア語対応の欧文フォントを適用します（目次にも反映します）。\\
 {\textbf 記述例：　}\bs section\{サンプル：トルストイ{\colH{800000}\bs fArial\{} Л. Н. Толстой{\colH{800000}\}}\}\hspace{3mm}\\
-※ \textbf{SECTION ６} のサンプルを参照。\vspace{2mm}
+※ \textbf{SECTION ８} のサンプルを参照。\vspace{2mm}
 
   \item[]\textbf{解決法２：フォントの差し替え}\\
 原因であるフォント\textbf{lmsans10-regular.otf, lmsans12-regular.otf}をキリル文字が含む他の欧文フォントに差し替えます（代替フォントは自由に選択可）。\\
@@ -468,8 +571,6 @@ https://tolstoy.ru/upload/iblock/a58/18\_tom.pdf // Льв Толстой(Tolsto
     \textbf{表示結果}：詳細は「\fRoboto{2.4}\textbf{フォントのインストール}」を参照。
 \end{itemize}
 
-
-
 \subsection{BibLaTeX内での翻字表記}
 
 \begin{itemize}
@@ -480,12 +581,67 @@ https://tolstoy.ru/upload/iblock/a58/18\_tom.pdf // Льв Толстой(Tolsto
   \item[\textbf{（A）}] .bib内でフォントを指定する（個別対処）。\\
     author = "\{{\colH{800000}\bs fFSerif} Repin, Ilʹi︠a︡ Efimovich\}",
   \item[\textbf{（B）}] BibLaTeXの設定を再定義する（全体への対処）\\
-    \bs renewcommand\{\bs bibfont\}\{{\colH{800000}\bs fFSerif}\}
+    \bs renewcommand\{\bs bibfont\}\{{\colH{800000}\bs fFSerif}\}\\
+※ このTemplateはこちらが設定されていますが、翻字を使用しない場合は必要ありません。\vspace{-4mm}
 \end{itemize}
+
+
+\subsection{フォントのバグ修正}\vspace{-2mm}
+
+\begin{itemize}
+  \item Microsoft社提供のフォント\footnote{手持ちのフォントを検証して見た所、meiryo.ttf（メイリオ）にバグがありました。検索結果にも示す様に、広く使用されていると思われます。}に記号「八端十字架（はったんじゅうじか）」{\jfontspec{FreeSerif}\fs{16}☦}の図像にバグがありますので、使用に際しては補正が必要です。
+  \item 以下に示す画像は Google で「八端十字架」を検索した結果です \footnote{環境：Windows 11 - Chrome.} 。\\
+  最下位の架が{\colH{800000}右上・左下向き}となっています。\vspace{-2mm}
+  
+\begin{figure}[H]
+\centering
+\includegraphics[width=6cm]{./images/eight-pointed-cross.png}  
+\caption{「八端十字架」の Google 検索結果）} 
+\end{figure}
+
+  \item 正式なUnicode表記は以下となります。
+\begin{figure}[H]
+\centering
+\includegraphics[width=4cm]{./images/U2626.png}  
+\caption{正式なUnicode表記} 
+\end{figure}
+\end{itemize}
+\vspace{-8mm}
+
+\subsection*{\hspace{4mm}フォントの補正}\vspace{-2mm}
+\begin{itemize}
+  \item 図像を左右反転させ補正します：\bs reflectbox
+\end{itemize}
+\vspace{-6mm}
+\begin{quote}
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{l|c|l|c}
+\textbf{フォント} & \textbf{元表記} & \textbf{記述例} & \textbf{補正}\\
+\hline
+メイリオ(meiryo) & {\fontspec{meiryo}\fs{14}☦}（誤） & \verb+\reflectbox{\jfontspec{meiryo}+{\fontspec{meiryo}\fs{12}☦}\verb+}+ & \reflectbox{\fontspec{meiryo}{\fs{14}☦}}\\
+FreeSerif & {\fontspec{FreeSerif}\fs{14}☦}（正） & \verb+{\jfontspec{FreeSerif}+{\fontspec{FreeSerif}\fs{12}☦}\verb+}+ & \\
+\end{tabular}
+\caption{図像の左右反転補正}\vspace{-6mm}
+\end{center}
+\end{table}
+\end{quote}
+
 
 \section{サンプル：トルストイ  {\fCRoman Л. Н. Толстой}}
 
 \section{参考文献}
 \printbibliography[title={参考文献（サンプル）}]
-  
+\vspace{-6mm}
+
+\section{付録：Cyrillic Unicode表}\vspace{-2mm}
+\begin{quote}
+\noindent\href{https://www.unicode.org/charts/PDF/U0400.pdf}{Cyrillic: 0400–04FF}\\
+\href{https://www.unicode.org/charts/PDF/U0500.pdf}{Cyrillic Supplement: 0500–052F}\\
+\href{https://www.unicode.org/charts/PDF/U2DE0.pdf}{Cyrillic Extended-A: 2DE0–2DFF}\\
+\href{https://www.unicode.org/charts/PDF/Unicode-15.0/U150-A640.pdf}{Cyrillic Extended-B: A640–A69F}\\
+\href{https://www.unicode.org/charts/PDF/U1C80.pdf}{Cyrillic Extended-C: 1C80–1C8F}\\
+\href{https://www.unicode.org/charts/PDF/U1E030.pdf}{Cyrillic Extended-D: 1E030–1E08F}\\
+\end{quote}\vspace{-6mm}
+\clearpage
 \end{document}
