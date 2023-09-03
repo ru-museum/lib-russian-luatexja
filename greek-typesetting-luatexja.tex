@@ -52,6 +52,9 @@
 \newfontfamily\fCmuntt{cmuntt} % FreeSerif
 \newfontfamily\fCmctt{cmctt10} % FreeSerif
 
+% GREEKフォント定義
+\newfontfamily\newathu{newathu5_8} % roboto [Script=CJK]
+
 % FONT-SIZE
 \def\fs#1{\fontsize{#1}{#1}\selectfont }
 
@@ -85,7 +88,6 @@
 \newpage
 
 \section{概要}
-
 これは、日本語文書組版パッケージ {\colH{800000} LuaTeX-ja} での環境 ( {\colH{800000} ltjsclasses}\footnote{jsclasses を LuaTeX-ja 用に改変したもの。ltjsarticle 他がある。} ) において和文とギリシア語との混在文を作成する為の記述方法を解説するものです。\vspace{6pt}\\
 基本を和文フォントとする LuaTeX-ja 環境では、ロシア及びギリシア文字は和文フォントに割り振られている為に{\gtfamily 等幅表示}されることから{\gtfamily プロポーショナル表記}に難があり、単語のハイフネーションや禁則処理に乱れを生じます。\vspace{6pt}\par
 
@@ -426,9 +428,8 @@ https://ja.wikipedia.org/wiki/古代ギリシア語}の解説の一部を引用�
 \end{itemize}
 
 
-\subsection{SAMPLE TEXTS}\vspace{-9mm}
-\hspace{30mm}
-\footnote{Ancient Greek // Wikipedia\\https://en.wikipedia.org/wiki/Ancient\_Greek}
+\subsection{SAMPLE TEXTS}\vspace{-9mm} % footnote 位置調整
+\hspace{30mm}\footnote{Ancient Greek // Wikipedia\\https://en.wikipedia.org/wiki/Ancient\_Greek}
 \begin{itemize} 
   \item[]The beginning of Homer's Iliad exemplifies the Archaic period of ancient Greek:\par
 \fFSerif{\fs{16}
@@ -447,20 +448,49 @@ The beginning of Apology by Plato exemplifies Attic Greek from the Classical per
 }    
 \end{itemize}
 
+\section{Unicodeフォント} \vspace{-2mm}
+
+\subsection*{\hspace{6mm}Athena Unicode} \vspace{-2mm}
+\begin{itemize}
+  \item 当フォントはUnicode v.15.0 に対応し全てのUnicodeギリシャ文字を表記可能です。\\
+\href{https://apagreekkeys.org/NAUdownload.html}{About New Athena Unicode Font}\footnote{New Athena Unicode version 5.008：WEB用の woffフォントもダウンロード可能です。} // GreekKeys\\  
+\end{itemize}
+\vspace{-12mm}
+
+\begin{quote}
+\subsection*{\colH{800000}Greek and Coptic Range: 0370–03FF}\vspace{-4mm}
+\newathu{\fs{14}
+Ͱ, ͱ, Ͳ, ͳ, ʹ, ͵, Ͷ, ͷ, ͺ, ͻ, ͼ, ͽ, ;, Ϳ, ΄, ΅, Ά, ·, Έ, Ή, Ί, Ό, Ύ, Ώ, ΐ, Α, Β, Γ, Δ, Ε, Ζ, Η, Θ, Ι, Κ, Λ, Μ, Ν, Ξ, Ο, Π, Ρ, Σ, Τ, Υ, Φ, Χ, Ψ, Ω, Ϊ, Ϋ, ά, έ, ή, ί, ΰ, α, β, γ, δ, ε, ζ, η, θ, ι, κ, λ, μ, ν, ξ, ο, π, ρ, ς, σ, τ, υ, φ, χ, ψ, ω, ϊ, ϋ, ό, ύ, ώ, Ϗ, ϐ, ϑ, ϒ, ϓ, ϔ, ϕ, ϖ, ϗ, Ϙ, ϙ, Ϛ, ϛ, Ϝ, ϝ, Ϟ, ϟ, Ϡ, ϡ, Ϣ, ϣ, Ϥ, ϥ, Ϧ, ϧ, Ϩ, ϩ, Ϫ, ϫ, Ϭ, ϭ, Ϯ, ϯ, ϰ, ϱ, ϲ, ϳ, ϴ, ϵ, ϶, Ϸ, ϸ, Ϲ, Ϻ, ϻ, ϼ, Ͻ, Ͼ, Ͽ}
+\end{quote} \vspace{-8mm}
+
+\begin{quote}
+\subsection*{\colH{800000}Greek Extended Range: 1F00–1FFF}\vspace{-4mm}
+\newathu{\fs{14}
+ἀ, ἁ, ἂ, ἃ, ἄ, ἅ, ἆ, ἇ, Ἀ, Ἁ, Ἂ, Ἃ, Ἄ, Ἅ, Ἆ, Ἇ, ἐ, ἑ, ἒ, ἓ, ἔ, ἕ, Ἐ, Ἑ, Ἒ, Ἓ, Ἔ, Ἕ, ἠ, ἡ, ἢ, ἣ, ἤ, ἥ, ἦ, ἧ, Ἠ, Ἡ, Ἢ, Ἣ, Ἤ, Ἥ, Ἦ, Ἧ, ἰ, ἱ, ἲ, ἳ, ἴ, ἵ, ἶ, ἷ, Ἰ, Ἱ, Ἲ, Ἳ, Ἴ, Ἵ, Ἶ, Ἷ, ὀ, ὁ, ὂ, ὃ, ὄ, ὅ, Ὀ, Ὁ, Ὂ, Ὃ, Ὄ, Ὅ, ὐ, ὑ, ὒ, ὓ, ὔ, ὕ, ὖ, ὗ, Ὑ, Ὓ, Ὕ, Ὗ, ὠ, ὡ, ὢ, ὣ, ὤ, ὥ, ὦ, ὧ, Ὠ, Ὡ, Ὢ, Ὣ, Ὤ, Ὥ, Ὦ, Ὧ, ὰ, ά, ὲ, έ, ὴ, ή, ὶ, ί, ὸ, ό, ὺ, ύ, ὼ, ώ, ᾀ, ᾁ, ᾂ, ᾃ, ᾄ, ᾅ, ᾆ, ᾇ, ᾈ, ᾉ, ᾊ, ᾋ, ᾌ, ᾍ, ᾎ, ᾏ, ᾐ, ᾑ, ᾒ, ᾓ, ᾔ, ᾕ, ᾖ, ᾗ, ᾘ, ᾙ, ᾚ, ᾛ, ᾜ, ᾝ, ᾞ, ᾟ, ᾠ, ᾡ, ᾢ, ᾣ, ᾤ, ᾥ, ᾦ, ᾧ, ᾨ, ᾩ, ᾪ, ᾫ, ᾬ, ᾭ, ᾮ, ᾯ, ᾰ, ᾱ, ᾲ, ᾳ, ᾴ, ᾶ, ᾷ, Ᾰ, Ᾱ, Ὰ, Ά, ᾼ, ᾽, ι, ᾿, ῀, ῁, ῂ, ῃ, ῄ, ῆ, ῇ, Ὲ, Έ, Ὴ, Ή, ῌ, ῍, ῎, ῏, ῐ, ῑ, ῒ, ΐ, ῖ, ῗ, Ῐ, Ῑ, Ὶ, Ί, ῝, ῞, ῟, ῠ, ῡ, ῢ, ΰ, ῤ, ῥ, ῦ, ῧ, Ῠ, Ῡ, Ὺ, Ύ, Ῥ, ῭, ΅, `, ῲ, ῳ, ῴ, ῶ, ῷ, Ὸ, Ό, Ὼ, Ώ, ῼ, ´, ῾}
+\end{quote} \vspace{-8mm}
+
+\begin{quote}
+\subsection*{\colH{800000}Ancient Greek Numbers Range: 10140–1018F}\vspace{-4mm}
+\newathu{\fs{14}
+𐅀, 𐅁, 𐅂, 𐅃, 𐅄, 𐅅, 𐅆, 𐅇, 𐅈, 𐅉, 𐅊, 𐅋, 𐅌, 𐅍, 𐅎, 𐅏, 𐅐, 𐅑, 𐅒, 𐅓, 𐅔, 𐅕, 𐅖, 𐅗, 𐅘, 𐅙, 𐅚, 𐅛, 𐅜, 𐅝, 𐅞, 𐅟, 𐅠, 𐅡, 𐅢, 𐅣, 𐅤, 𐅥, 𐅦, 𐅧, 𐅨, 𐅩, 𐅪, 𐅫, 𐅬, 𐅭, 𐅮, 𐅯, 𐅰, 𐅱, 𐅲, 𐅳, 𐅴, 𐅵, 𐅶, 𐅷, 𐅸, 𐅹, 𐅺, 𐅻, 𐅼, 𐅽, 𐅾, 𐅿, 𐆀, 𐆁, 𐆂, 𐆃, 𐆄, 𐆅, 𐆆, 𐆇, 𐆈, 𐆉, 𐆊, 𐆋, 𐆌, 𐆍, 𐆎}
+\end{quote} \vspace{-6mm}
+
 \section{TIPS} \vspace{-2mm}
-\subsection{SECTIONの文字化け} \vspace{-1mm}  
+\subsection{SECTIONの文字化け} \vspace{-2mm}  
 \begin{itemize}
   \item SECTION内では、システム側で設定されているフォント（\textbf{lmsans12-regular}）がギリシャ文字を含まない為に、直接ギリシャ語を使うと文字化けします。\\
   定義した欧文フォントをギリシャ文字列へ適用します(目次にも反映します：SECTION 7 を参照)\\
   \bs section \{ {\colH{800000} \bs Carlito \{ <greek> \}} \}
   \item 他に問題が生じなければ、メインフォントを欧文フォント（例：\bs setmainfont\{Tinos-Regular\}）に設定することでも可能です（非推奨）。\vspace{-1mm}
 \end{itemize}
-\subsection{FOOTNOTEの文字化け} \vspace{-1mm}  
+ \vspace{-6mm}
+
+\subsection{FOOTNOTEの文字化け} \vspace{-2mm}  
 \begin{itemize}
   \item FOOTNOTEにおいてもSECTIONと同様に直接ギリシア語を記述すると文字化けしますので、定義した欧文フォントを適用して下さい。\\
 記述例： \bs footnote\{The Project Gutenberg eBook of {\colH{800000}\{\bs fCmuntt} \fCmuntt Ομήρου Οδύσσεια Τόμος Δ{\colH{800000}\}}\}
 \end{itemize}
-
+ 
 \subsection{太字の強調}  
 \begin{itemize}
   \item 太字強調の効果が余り明瞭でない時は、Sans（roboto 等）系フォントと \bs gtfamilyとを重ねて適用して下さい。\\
@@ -469,6 +499,13 @@ The beginning of Apology by Plato exemplifies Attic Greek from the Classical per
 \end{itemize}
 
 \section{SECTIONサンプル：{\fCmuntt Ομήρου Οδύσσεια Τόμος Α}}  
+
+\section{付録：Greek Unicode表}\vspace{-2mm}
+\begin{quote}
+\noindent\href{https://www.unicode.org/charts/PDF/U0370.pdf}{Greek and Coptic Range: 0370–03FF}\\
+\href{https://www.unicode.org/charts/PDF/U1F00.pdf}{Greek Extended Range: 1F00–1FFF}\\
+\href{https://www.unicode.org/charts/PDF/U10140.pdf}{Ancient Greek Numbers Range: 10140–1018F}\\
+\end{quote}
 
 \end{document}
 
