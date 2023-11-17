@@ -39,7 +39,7 @@
 
 % FONT 
 \usepackage{luatexja-otf}% UTF CID
-% \usepackage[deluxe]{luatexja-preset}
+\usepackage[deluxe]{luatexja-preset}
 \usepackage{luatexja-fontspec}
 
 % 縦組
@@ -51,6 +51,7 @@
 "2626-"262E
 %,"E000-"EDEA,"F340-"FE2F,"2E2A-"2E43,"10FB-"1DC1 % 記号：☦ ☩ ☪ ☫ ☬ ☭ ☮
 }
+
 
 \def\basefont{NotoSerifCJKjp-Regular} 
 \setmainfont{\basefont} 
@@ -144,21 +145,30 @@
 \author{\href{https://github.com/ru-museum/}{ru\_museum} (GitHub)}
 \date{\today}
 
+
 \begin{document}
 
 \maketitle
 
 \thispagestyle{empty}
-
 \clearpage
-\addtocounter{page}{-2}
 
 \newpage
-  
+
+{\makeatletter
+\let\ps@jpl@in\ps@empty
+\makeatother
+\pagestyle{empty}
 \tableofcontents
-\thispagestyle{empty}
+\clearpage}
+
+  
+% \tableofcontents
+% \thispagestyle{empty}
 
 \newpage
+% \clearpage
+\addtocounter{page}{-3}
 
 \section{概要}
 これは、日本語文書組版パッケージ \textbf{\colH{800000} LuaTeX-ja} での環境 ( \textbf{\colH{800000} ltjsclasses}\footnote{jsclasses を LuaTeX-ja 用に改変したもの。ltjsarticle 他がある。} ) において和露混在文を作成する為のロシア語の記述方法を解説するものです。\vspace{6pt}\\
@@ -552,7 +562,7 @@ https://tolstoy.ru/upload/iblock/a58/18\_tom.pdf // Льв Толстой(Tolsto
   \item[]\textbf{解決法１：フォントの適用}\\
   独自に定義したロシア語対応の欧文フォントを適用します（目次にも反映します）。\\
 {\textbf 記述例：　}\bs section\{サンプル：トルストイ{\colH{800000}\bs fArial\{} Л. Н. Толстой{\colH{800000}\}}\}\hspace{3mm}\\
-※ \textbf{SECTION ８} のサンプルを参照。\vspace{2mm}
+※ \textbf{SECTION 11} のサンプルを参照。\vspace{2mm}
 
   \item[]\textbf{解決法２：フォントの差し替え}\\
 原因であるフォント\textbf{lmsans10-regular.otf, lmsans12-regular.otf}をキリル文字が含む他の欧文フォントに差し替えます（代替フォントは自由に選択可）。\\
@@ -614,7 +624,7 @@ https://tolstoy.ru/upload/iblock/a58/18\_tom.pdf // Льв Толстой(Tolsto
 \begin{figure}[H]
 \centering
 \includegraphics[width=6cm]{./images/eight-pointed-cross.png}  
-\caption{「八端十字架」の Google 検索結果）} 
+\caption{「八端十字架」の Google 検索結果）}\vspace{-6mm} 
 \end{figure}
 
   \item 正式なUnicode表記は以下となります。
@@ -640,10 +650,33 @@ https://tolstoy.ru/upload/iblock/a58/18\_tom.pdf // Льв Толстой(Tolsto
 メイリオ(meiryo) & {\fontspec{meiryo}\fs{14}☦}（誤） & \verb+\reflectbox{\jfontspec{meiryo}+{\fontspec{meiryo}\fs{12}☦}\verb+}+ & \reflectbox{\fontspec{meiryo}{\fs{14}☦}}\\
 FreeSerif & {\fontspec{FreeSerif}\fs{14}☦}（正） & \verb+{\jfontspec{FreeSerif}+{\fontspec{FreeSerif}\fs{12}☦}\verb+}+ & \\
 \end{tabular}
-\caption{図像の左右反転補正}\vspace{-6mm}
+\caption{図像の左右反転補正}\vspace{-10mm}
 \end{center}
 \end{table}
 \end{quote}
+
+
+\subsection{縦組における「…」の不具合補正}\vspace{-2mm}
+% \hspace{12mm}
+\begin{minipage}{12cm}
+\begin{itemize}
+  \item 縦組における「…」（三点リーダー）が縦組文字とならないという不具合が報告\footnotemark されています。
+  \item 以下の例に示す様に文字を90度回転させるか、\textbf{全角縦三点リーダー}「︙」({\colH{800000}赤字部分=下部})を使用することでも可能です。
+\end{itemize}
+\end{minipage}
+
+\vspace{-24mm}\hspace{138mm}
+\vbox{\hsize=30mm\raggedright%left
+\fs{14}\tate を終えた…{\colH{800000}︙}。}
+% \rotatebox[origin=c]{90}{
+\vspace{-10mm}
+\begin{verbatim}
+      を終えた\rotatebox[origin=l]{90}{…}︙。}
+\end{verbatim}
+\vspace{-3mm}
+
+\footnotetext{\href{https://okumuralab.org/tex/mod/forum/discuss.php?d=3660}{LuaLaTeX縦書きでの三点リーダーが横になる} // TeX Forum 2023-11-05\\
+奥村 晴彦氏の「\bs usepackage\{luatexja-preset\} を入れて、新しい `ltj-setwidth.lua` をカレントディレクトリに置くと、正常になりました」との解決法を確認しています。}
 
 
 \section{サンプル：トルストイ  {\fCRoman Л. Н. Толстой}}
