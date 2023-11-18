@@ -29,8 +29,8 @@ Library for Russian Typesetting on **LuaTeX-ja**.
 ```
 \documentclass[a4paper,10pt]{ltjsarticle}
 \usepackage[deluxe]{luatexja-preset} % 必須
-\usepackage{../lib/lib-russian-luatexja}
-% \usepackage{../lib/lib-greek-luatexja} % ギリシア語の場合
+\usepackage{./lib/lib-russian-luatexja}
+% \usepackage{./lib/lib-greek-luatexja} % ギリシア語の場合
 ```
 - ギリシャ語用を共に読込めば、和文と露文そしてギリシャ語の混在文が可能です。
 ## 2. ロシア語資料の作成
