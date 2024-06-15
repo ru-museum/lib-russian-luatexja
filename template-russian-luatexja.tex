@@ -1,0 +1,198 @@
+\documentclass[a4paper,10pt]{ltjsarticle}
+
+\usepackage{setspace}
+
+\usepackage{comment} 
+\usepackage{substr}
+\setcounter{secnumdepth}{4}
+
+\usepackage{graphicx} 
+\usepackage{float} 
+
+% LINK
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{pdfborder={0 0 0.5}}
+
+% 色の使用
+\usepackage{xcolor}
+% 色定義
+\definecolor{mylinkcolor}{RGB}{3, 112, 145}
+\definecolor{clBlue}{RGB}{3, 112, 145}
+\definecolor{linkcol}{RGB}{2, 106, 77}
+\definecolor{rred}{RGB}{128, 0, 0}
+\hypersetup{
+    colorlinks=true,
+    citecolor=blue,
+    linkcolor=linkcol, 
+    urlcolor=mylinkcolor
+}
+% HTML(#800000)色定義
+\def\colH#1{\color[HTML]{#1}}
+
+% FONT-SIZE 定義
+\def\fs#1{\fontsize{#1}{#1}\selectfont }
+% BACKSLASH 定義
+\def\bs{\textbackslash }
+
+% \setlength\parindent{0pt} % 段落はじめの空白を除去
+
+% FONT 
+\usepackage{luatexja-otf}% UTF CID
+\usepackage[deluxe]{luatexja-preset}
+\usepackage{luatexja-fontspec}
+
+% 縦組
+\usepackage{lltjext}
+
+\usepackage{./lib/lib-russian-luatexja} 
+\ltjdefcharrange{8}
+{
+"2626-"262E
+%,"E000-"EDEA,"F340-"FE2F,"2E2A-"2E43,"10FB-"1DC1 % 記号：☦ ☩ ☪ ☫ ☬ ☭ ☮
+}
+
+
+\def\basefont{NotoSerifCJKjp-Regular} 
+\setmainfont{\basefont} 
+% フォント名
+\def\myMainfont{
+  \BeforeSubString{-Regular}{\basefont}
+}
+\setsansfont{NotoSans}
+\setmonofont{RobotoMono-Light}% NotoSansMono
+
+% 
+% フォントの定義設定
+% 
+\newfontfamily\fTimes{times}
+\newfontfamily\fArial{arial}
+\newfontfamily\fFSerif{FreeSerif}
+\newfontfamily\fRoboto{roboto}
+\newfontfamily\fYumin{yumin}
+\newfontfamily\fIPAM{HaranoAjiMincho-Regular}
+\newfontfamily\fNCMSans{NewCMSans10-Regular}
+\newfontfamily\fCRoman{Crimson-Roman}
+\newfontfamily\fDjVSerif{DejaVuSerif}
+\newfontfamily\fDjVSans{DejaVuSans}
+
+\newfontfamily\chIrmIEUcs{IrmIEUcs}
+
+%%
+%% キリル文字フォント用の設定
+%%
+\newfontfamily\cyrillicfontsf[Script=Cyrillic,Ligatures=TeX]{PomorskyUnicode}%FreeSerif
+\newfontfamily\cyrillicfonttt[Ligatures=TeX]{PomorskyUnicode}
+\newfontfamily\russianfont[Script=Cyrillic,Ligatures=TeX]{Linux Libertine O}
+\newfontfamily\russianfonttt[Ligatures=TeX]{lmmono10-regular.otf}
+\newfontfamily\russianfontsf[Ligatures=TeX]{lmsans10-regular.otf}
+\newfontfamily\churchslavonicfont[Script=Cyrillic,Ligatures=TeX,HyphenChar=_]{PonomarUnicode.otf}
+
+%%
+%% fonts-churchslavonic：教会スラヴ語フォントの定義
+%% /usr/share/texlive/texmf-dist/fonts/opentype/public/fonts-churchslavonic
+\newfontfamily\Acathist[Script=Cyrillic,Ligatures=TeX]{Acathist-Regular.otf}
+\newfontfamily\Cathisma[Script=Cyrillic,Ligatures=TeX]{CathismaUnicode.otf}
+\newfontfamily\Fedorovsk[Script=Cyrillic,Ligatures=TeX]{FedorovskUnicode.otf}
+\newfontfamily\Indiction[Script=Cyrillic,Ligatures=TeX]{IndictionUnicode.otf}
+\newfontfamily\Menaion[Script=Cyrillic,Ligatures=TeX]{MenaionUnicode.otf}
+\newfontfamily\MezenetsNo[Script=Cyrillic,Ligatures=TeX]{MezenetsUnicode.otf}
+\newfontfamily\Mezenets[Script=Cyrillic,Ligatures=TeX]{MezenetsUnicode.otf}
+\newfontfamily\Monomakh[Script=Cyrillic,Ligatures=TeX]{MonomakhUnicode.otf}
+\newfontfamily\Oglavie[Script=Cyrillic,Ligatures=TeX]{OglavieUnicode.otf}
+\newfontfamily\Pochaevsk[Script=Cyrillic,Ligatures=TeX]{PochaevskUnicode.otf}
+\newfontfamily\Pomorsky[Script=Cyrillic,Ligatures=TeX]{PomorskyUnicode.otf}
+\newfontfamily\Ponomar[Script=Cyrillic,Ligatures=TeX]{PonomarUnicode.otf}
+\newfontfamily\Shafarik[Script=Cyrillic,Ligatures=TeX]{Shafarik-Regular.otf}
+\newfontfamily\Triodion[Script=Cyrillic,Ligatures=TeX]{TriodionUnicode.otf}
+\newfontfamily\Vertograd[Script=Cyrillic,Ligatures=TeX]{VertogradUnicode.otf}
+
+% 
+% SECTIONの定義
+% 
+\usepackage{titlesec}
+\titleformat{\section}[block]{\gtfamily \large}{\thesection}{0.5em}{}% 
+\titleformat{\subsection}[block]{\gtfamily \large}{\thesubsection}{0.5em}{}% 
+
+% 
+% BibLaTeX
+% 
+\usepackage[
+  backend=biber,
+  bibstyle=ieee,
+]{biblatex}
+\nocite{*}
+\addbibresource{./lib/sample.bib} % .bibデータの読込
+\renewcommand{\bibfont}{\fFSerif}
+%  [Online]. Available => URL
+\DeclareFieldFormat{url}{\mkbibacro{参照}{\Large\addcolon}\space\url{#1}}
+% URL FONT
+\def\UrlFont{\normalfont}
+% author name: 
+\renewcommand{\labelnamepunct}{\Large\addcolon\space}
+
+
+\usepackage{listings}
+\usepackage{tablefootnote}
+
+% TITLEPAGE 
+\title{
+  \huge ロシア語資料作成テンプレート
+\par\vspace{180mm}
+}
+\author{\href{https://github.com/ru-museum/}{ru\_museum} (GitHub)}
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+\thispagestyle{empty}
+\clearpage
+
+\newpage
+
+{\makeatletter
+\let\ps@jpl@in\ps@empty
+\makeatother
+\pagestyle{empty}
+\tableofcontents
+\clearpage}
+
+  
+% \tableofcontents
+% \thispagestyle{empty}
+
+\newpage
+% \clearpage
+\addtocounter{page}{-3}
+
+\section{利用方法}
+\begin{itemize}
+  \item これは、ロシア語資料の作成用の{\bfseries テンプレート}です。\\
+作成手順は以下を参照して下さい（機能は全て利用可能です）。
+
+\href{https://github.com/ru-museum/russian-typesetting-luatexja.pdf}{Template of Russian Typesetting on LuaTeX-ja}ロシア語資料の作成：\\
+\hspace{6pt} https://github.com/ru-museum/russian-typesetting-luatexja.pdf
+  \item 使用には以下のパッケージが必要です。\\
+    \bs usepackage\{./lib/lib-russian-luatexja\}
+
+\end{itemize}
+
+\section{SECTION: I}
+
+\newpage
+
+\section{SECTION: II}
+
+\newpage
+
+\section{SECTION: III}
+
+\newpage
+
+\section{参考文献}
+% \printbibliography[title={参考文献（サンプル）}]
+
+\end{document}
