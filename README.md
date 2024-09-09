@@ -17,8 +17,13 @@ Library for Russian Typesetting on **LuaTeX-ja**.
 - DebianでのLuaLaTeXの使用方法はこちらで解説しています。[LuaLaTeX with Debian: 環境構築と作業手順](https://github.com/ru-museum/lib-russian-luatexja/blob/main/lualatex-with-debian.pdf)（lualatex-with-debian.pdf）
 
 # 環境構築
-ここでは GNU/Linux Debian(sid) での使用例です。
-- texlive-base v. ２０２２.２０２３０１２２-３（2023）
+ここでは GNU/Linux Debian(sid) での使用例です(2024-09-09)。
+```
+TeX 3.141592653 (TeX Live 2025/dev/Debian)
+TeX Live version 2024
+```
+**主なインストールパッケージ**
+- texlive-base
 - texlive-luatex
 - texlive-lang-cyrillic（babel-russian やフォント類）
 - texlive-lang-greek（babel-greek やフォント類） % ギリシア語の場合
