@@ -22,7 +22,7 @@ Library for Russian Typesetting on **LuaTeX-ja**.
 TeX 3.141592653 (TeX Live 2025/dev/Debian)
 TeX Live version 2024
 ```
-**主なインストールパッケージ**
+**主な使用パッケージ**
 - texlive-base
 - texlive-luatex
 - texlive-lang-cyrillic（babel-russian やフォント類）
