@@ -426,10 +426,10 @@ https://tolstoy.ru/upload/iblock/a58/18\_tom.pdf // Льв Толстой(Tolsto
 \hspace{80mm}— Анна Каренина: Л. Н. Толстой
 }
 
-\section{ロシア語翻字\footnote{ロシア語と翻字(ローマ字)との相互変換は、\href{https://www.art-russian.org/}{ロシア美術資料館}で提供しています(https://www.art-russian.org/)。}}
+\section{ロシア語翻字}
 
 \begin{itemize}
-  \item ロシア語翻字を表記するには、収録されているフォントを指定する必要があります。
+  \item ロシア語翻字\footnote{ロシア語と翻字(ローマ字)との相互変換は、\href{https://www.art-russian.org/}{ロシア美術資料館}で提供しています(https://www.art-russian.org/)。}を表記するには、収録されているフォントを指定する必要があります。
   \item 現在適正表記の出来るフォントには{\colH{800000}DejaVuSans}\footnote{DejaVuSerifは不可。}、{\colH{800000}FreeSerif}、{\colH{800000}FreeSans}\footnote{gnu-freefontとしてTexLiveによりデフォルトでインストールされています。\\/usr/share/texlive/texmf-dist/fonts/opentype/public/gnu-freefont/Free*.otf}等があります。
 \vspace{-2mm}
 \begin{table}[h]
@@ -618,8 +618,8 @@ https://tolstoy.ru/upload/iblock/a58/18\_tom.pdf // Льв Толстой(Tolsto
 \subsection{フォントのバグ修正}\vspace{-2mm}
 
 \begin{itemize}
-  \item Microsoft社提供のフォント\footnote{手持ちのフォントを検証して見た所、meiryo.ttf（メイリオ）にバグがありました。検索結果にも示す様に、広く使用されていると思われます。}に記号「八端十字架（はったんじゅうじか）」{\jfontspec{FreeSerif}\fs{16}☦}の図像にバグがありますので、使用に際しては補正が必要です。
-  \item 以下に示す画像は Google で「八端十字架」を検索した結果です \footnote{環境：Windows 11 - Chrome.} 。\\
+  \item Microsoft社提供のフォントmeiryo.ttf（メイリオ）において記号「八端十字架（はったんじゅうじか）」{\jfontspec{FreeSerif}\fs{16}☦}の図像にバグがありますので使用に際しては補正が必要です\footnote{Windows11の環境でも検証した結果、未だ修正はされていないと思われます。}。
+  \item 以下に示す画像は Google で「八端十字架」を検索した結果です \footnote{但し、ブラウザで当該フォント（meiryo）を指定している場合に限ります。又インストールされていない場合は代替フォントが用いられます。} 。\\
   最下位の架が{\colH{800000}右上・左下向き}となっています。\vspace{-2mm}
   
 \begin{figure}[H]
@@ -657,7 +657,7 @@ FreeSerif & {\fontspec{FreeSerif}\fs{14}☦}（正） & \verb+{\jfontspec{FreeSe
 \end{quote}
 
 
-\subsection{縦組における「…」の不具合補正}\vspace{-2mm}
+\subsection{縦組における「…」(三点リーダー)の不具合補正}\vspace{-2mm}
 % \hspace{12mm}
 \begin{minipage}{12cm}
 \begin{itemize}
@@ -679,6 +679,73 @@ FreeSerif & {\fontspec{FreeSerif}\fs{14}☦}（正） & \verb+{\jfontspec{FreeSe
 \footnotetext{\href{https://okumuralab.org/tex/mod/forum/discuss.php?d=3660}{LuaLaTeX縦書きでの三点リーダーが横になる} // TeX Forum 2023-11-05\\
 奥村 晴彦氏の「\bs usepackage\{luatexja-preset\} を入れて、新しい `ltj-setwidth.lua` をカレントディレクトリに置くと、正常になりました」との解決法を確認しています。}
 
+\subsection{python3.12 へのアップグレードにおける不具合 }\vspace{-2mm}
+\begin{itemize}
+  \item python3 (3.12.6-1) へのアップグレードにおける「\textbf{SyntaxWarning: invalid escape sequence}」不具合が生じています（2024-09-16）。 
+%  \item 但しこれは飽く迄最上流の Debina(sid: unstable) 環境におけるアップグレード時の不具合です。その他の環境に当てはまるものではありません。 
+  \item  これはgedit-latex-plugins側で何れ修正されると思いますが、もし問題が生じた場合は下記の対処法を試して下さい。\\ 
+  \item[]\textbf{処理内容}
+{\fs{5.6pt}
+\begin{verbatim}
+python3 (3.12.6-1) を設定しています ...
+running python rtupdate hooks for python3.12...
+/usr/lib/gedit/plugins/latex/latex/actions.py:254: SyntaxWarning: invalid escape sequence '\e'
+  snippet_source = "\ensuremath{\mathbb{$0}}"
+/usr/lib/gedit/plugins/latex/latex/actions.py:261: SyntaxWarning: invalid escape sequence '\e'
+  snippet_source = "\ensuremath{\mathcal{$0}}"
+/usr/lib/gedit/plugins/latex/latex/actions.py:269: SyntaxWarning: invalid escape sequence '\e'
+  snippet_source = "\ensuremath{\mathfrak{$0}}"
+/usr/lib/gedit/plugins/latex/latex/editor.py:146: SyntaxWarning: invalid escape sequence '\e'
+  """
+/usr/lib/gedit/plugins/latex/latex/expander.py:33: SyntaxWarning: invalid escape sequence '\i'
+  """
+/usr/lib/gedit/plugins/latex/latex/expander.py:58: SyntaxWarning: invalid escape sequence '\i'
+  """
+/usr/lib/gedit/plugins/latex/latex/parser.py:233: SyntaxWarning: invalid escape sequence '\e'
+  """
+/usr/lib/gedit/plugins/latex/latex/parser.py:509: SyntaxWarning: invalid escape sequence '\w'
+  _PATTERN = compile("(TODO|FIXME)\w?\:?(?P<text>.*)")
+/usr/lib/gedit/plugins/latex/latex/validator.py:40: SyntaxWarning: invalid escape sequence '\['
+  """
+/usr/lib/gedit/plugins/latex/preferences/__init__.py:145: SyntaxWarning: invalid escape sequence '\s'
+  self._re = re.compile("^\s*%+\s*gedit:(.*)\s*=\s*(.*)")
+/usr/lib/x86_64-linux-gnu/gedit/plugins/externaltools/library.py:212: SyntaxWarning: invalid escape sequence '\-'
+  RE_KEY = re.compile('^([a-zA-Z_][a-zA-Z0-9_.\-]*)(\[([a-zA-Z_@]+)\])?$')
+/usr/lib/x86_64-linux-gnu/gedit/plugins/snippets/substitutionparser.py:162: SyntaxWarning: invalid escape sequence '\s'
+  match = re.match('\\\\?%s\s*' % self.REG_GROUP, tokens)
+/usr/share/scribus/scripts/importcsv2table.py:3: SyntaxWarning: invalid escape sequence '\o'
+  """
+running python post-rtupdate hooks for python3.12...
+\end{verbatim}
+}
+  \item[]\textbf{原因}\\
+python3.12 において\textbf{escape sequence}の扱いが変更されたことに起因します。\\
+\hspace{4mm}参照：\href{https://docs.python.org/3/whatsnew/3.12.html}{python3.12} (https://docs.python.org/3/whatsnew/3.12.html)\\
+{\fs{8pt}
+Other Language Changes\\
+    The parser now raises SyntaxError when parsing source code containing null bytes.\\
+    A backslash-character pair that is not a valid escape sequence now generates a SyntaxWarning, instead of DeprecationWarning. For \\example, re.compile("\bs d+\bs .\bs d+") now emits a \textbf{SyntaxWarning ("\bs d" is an invalid escape sequence, use raw strings for regular expression: re.compile(r"\bs d+\bs .\bs d+")).} In a future Python version, SyntaxError will eventually be raised, instead of SyntaxWarning.
+}\vspace{2mm}
+
+  \item[]\textbf{事例１：}「"」で囲まれた文字列の先頭に「{\colH{800000}r}」\footnote{raw string：バックスラッシによるエスケープシーケンスを無視し文字通りに解釈される。}を記述するか、「{\colH{800000}\bs\bs}」とします。\\
+\hspace{6mm}/usr/lib/gedit/plugins/latex/latex/actions.py:254: SyntaxWarning: invalid escape sequence '\bs e'\\
+\hspace{8mm}snippet\_source = "\bs ensuremath\{\bs mathbb\{\$0\}\}"\\
+\hspace{8mm}修正後：{\colH{800000}r}"\bs ensuremath\{\bs mathbb\{\$0\}\}" 又は "{\colH{800000}\bs\bs}ensuremath\{{\colH{800000}\bs\bs}mathbb\{\$0\}\}"\\
+% \hspace{18mm}\% 他の部分は「{\colH{800000}\bs\bs}」の記述になっていることからバグと想定されます。\\
+
+  \item[]\textbf{事例２：}「"""」で囲まれたコメント部全体を「\#」によりコメントアウトします(上記「{\colH{800000}\bs\bs}」でも可)。\vspace{2mm}\\
+\hspace{6mm}/usr/lib/gedit/plugins/latex/latex/editor.py:146: SyntaxWarning: invalid escape sequence '\bs e'\\
+\hspace{8mm}"""\\\vspace{-4mm}
+% \hspace{8mm}修正後：
+{\fs{10pt}
+\begin{verbatim}
+　　　修正後：# """
+           #  （略）
+           # """
+\end{verbatim}}
+\end{itemize}
+
+\newpage
 
 \section{サンプル：トルストイ  {\fCRoman Л. Н. Толстой}}
 
