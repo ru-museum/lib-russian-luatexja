@@ -50,6 +50,3 @@ TeX Live version 2024
 #### 詳細は以下に詳しく解説しています。
 [教会スラヴ語: Church Slavonic Typesetting in LuaTeX-ja](https://github.com/ru-museum/lib-russian-luatexja/blob/main/churchslavonic-luatexja.pdf)（**churchslavonic-luatexja.pdf**）
 
-# TODO
-- Babel 及び Polyglossia 版の追加。
- 
