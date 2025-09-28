@@ -295,14 +295,22 @@ https://ctan.org/topic/font-otf
 \end{enumerate}
 
 \section{作成手順}
-
-\subsection{ライブラリーの読込}
+\vspace{-2mm}
+\subsection{基本構成：ライブラリーの読込}
+\vspace{-2mm}
 {\colH{800000} lib-russian-luatexja.sty} パッケージを読込みます。
 \vspace{-2mm}
+{\fs{8pt}\colH{77767b}
 \begin{verbatim}
-  \usepackage[deluxe]{luatexja-preset} % 必須
-  \usepackage{./lib/lib-russian-luatexja} 
-\end{verbatim}
+   %% 最小動作テストコード
+   \documentclass[a4paper,10pt]{ltjsarticle}
+     \usepackage[deluxe]{luatexja-preset} % 必須
+     \usepackage{./lib/lib-russian-luatexja} 
+     \setmainfont{FreeSerif} % NotoSerifJP-regular など
+   \begin{document}
+　   Толстойはロシアの作家である。
+   \end{document}
+\end{verbatim}}
 \vspace{-6mm}
     
 \subsection{フォントの設定と定義}
@@ -310,7 +318,7 @@ https://ctan.org/topic/font-otf
 \subsubsection{基本フォントの指定}
 \begin{itemize}
   \item[]\hspace{-5mm} {\colH{800000}\bs setmainfont\{} \basefont{\colH{800000} \}}
-  \item 基本指定した書体の和文フォントは全体に適用されます。
+  \item 基本指定した書体の和文フォントは全体に適用されます（lib-russian-luatexjaで設定も可）。
   \item 特に指定がなければTexLiveのデフォルトのHarano Aji Fonts（haranoaji）が設定されます。
   \item 現在適正に表記の出来る\textbf{主な基本設定向けフォント}は以下のものがあります。\\
   インストール方法は 「\fRoboto{2.4} {\textbf フォントのインストール}」を参照して下さい。\vspace{-4mm}
